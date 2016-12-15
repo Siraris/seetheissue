@@ -1,0 +1,7 @@
+.container
+  .row
+    .col-md-12
+      %h1="This rocks"
+      = form_for Video.new, url: "" do |f|
+        =f.file_field :content, {accept: "video/*;capture=camcorder"}
+        =f.select :category_id, Category.all.collect {|cat| [cat.name, cat.id]}, class: 'form-control', include_blank: true

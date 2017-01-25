@@ -1,0 +1,39 @@
+#signupModal.modal.auth__modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "signupModalLabel"}}
+  .modal-dialog.modal-sm{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
+          %span{aria: { hidden: "true"}} &times;
+        %h4.modal-title#signupModalLabel= t('.sign_up')
+      .br-modal__scroll
+        .modal-body
+          = form_for User.new, url: registration_path(:user), remote: true,
+            class: 'br-form' do |f|
+            .alert.alert-danger.auth__modal__errors
+            .form-group
+            .form-group
+              = f.label :email, class: 'sr-only'
+              = f.email_field :email,
+                placeholder: User.human_attribute_name(:email),
+                required: true,
+                class: 'form-control input-lg'
+            .form-group
+              = f.label :password, class: 'sr-only'
+              = f.password_field :password,
+                placeholder: User.human_attribute_name(:password),
+                required: true,
+                class: 'form-control input-lg'
+            .form-group
+              = f.label :password_confirmation, class: 'sr-only'
+              = f.password_field :password_confirmation,
+                placeholder: User.human_attribute_name(:password_confirmation),
+                required: true,
+                class: 'form-control input-lg'
+            = f.button t('.sign_up'),
+              class: 'btn btn-primary btn-lg btn-block',
+              data: { 'disable-with' => t('.signing_up_html') }
+        .modal-footer
+          = link_to t('.log_in'), '#',
+            class: 'btn btn-default',
+            data: { toggle: 'modal', target: '#loginModal' },
+            form_class: 'pull-right'

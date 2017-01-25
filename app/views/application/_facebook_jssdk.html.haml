@@ -1,0 +1,19 @@
+- app_id = ENV.fetch(Rails.env.development? || Rails.env.test? || Rails.env.staging? ? 'FACEBOOK_APP_ID_DEV' : 'FACEBOOK_APP_ID_PRODUCTION')
+
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '#{app_id}',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));

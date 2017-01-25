@@ -1,4 +1,5 @@
 !!!
+<!DOCTYPE html>
 %html{lang: "en"}
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
@@ -13,6 +14,13 @@
     = stylesheet_link_tag "application", media: "all"
 
   %body{ class: "#{controller.controller_path} #{controller.action_name}" }
+    - #Facebook JS SDK
+    = render 'facebook_jssdk'
+    - #Twitter JS SDK
+    = render 'twitter_jssdk'
+
+    = render 'modals/signup'
+    = render 'modals/login'
     = yield
     = render 'footer'
 

@@ -2,6 +2,17 @@
   .row
     .col-md-12
       %h1="This rocks"
-      = form_for Video.new, url: "" do |f|
-        =f.file_field :content, {accept: "video/*;capture=camcorder"}
-        =f.select :category_id, Category.all.collect {|cat| [cat.name, cat.id]}, class: 'form-control', include_blank: true
+      - if user_signed_in?
+        = form_for Video.new do |f|
+          =f.file_field :content, {accept: "video/*;capture=camcorder"}
+          =f.select :category_id, Category.all.collect {|cat| [cat.name, cat.id]}, class: 'form-control', include_blank: true
+          =f.submit
+      - else
+        %button.btn.btn-info{type: "button", data: {toggle: 'modal', target: '#signupModal'}}="Sign in to post a video"
+  .row
+    .col-md-12
+      %h1="Healthcare"
+      - @videos.each do |video|
+        %div{style: "width: 400px; height: 270px; float:left;"}
+          = javascript_include_tag(video_embed_tag(video.media_id))
+          = render 'share_buttons'

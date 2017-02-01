@@ -37,10 +37,11 @@ class JWService
       puts params[:video][:content].content_type
       puts 'attachment; filename='+params[:video][:content].original_filename
       puts File.size(params[:video][:content].path.to_s)
-      response = RestClient.put(video_url, :file => File.new(params[:video][:content].path, 'rb'),
-       content_disposition: 'attachment; filename='+params[:video][:content].original_filename,
-       content_type: params[:video][:content].content_type,
-       content_length: File.size(params[:video][:content].path.to_s))
+      RestClient.log = 'stdout'
+      response = RestClient.put(video_url, File.new(params[:video][:content].path, 'rb'),
+       :content_disposition => 'attachment; filename='+params[:video][:content].original_filename,
+       :content_type => params[:video][:content].content_type,
+       :content_length => File.size(params[:video][:content].path.to_s))
     rescue Exception => e
       puts e.response
     end

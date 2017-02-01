@@ -11,8 +11,9 @@ class VideoThumbnail extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(e) {
     // Should display the video popup with the containing video
+    alert(`Show dat popup ${this.props.id}`)
   }
 
   render () {

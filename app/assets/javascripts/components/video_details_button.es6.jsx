@@ -1,3 +1,5 @@
+import VideoDetails from 'components/video_details.es6.jsx';
+
 export default class VideoDetailsButton extends React.Component {
   constructor(props) {
     super(props);

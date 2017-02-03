@@ -16,11 +16,13 @@ export default class VideoThumbnail extends React.Component {
 
   handleClick(e) {
     // Should display the video popup with the containing video
-    alert(`Show dat popup ${this.props.id}`)
+    //alert(`Show dat popup ${this.props.id}`)
+    this.props.togglePopup(this);
   }
 
   render () {
     let thumbnailUrl = `${jwUrl + this.props.id}-${sizes[this.props.size]}.jpg`
+
     return (
       <div onClick={this.handleClick}>
         <VideoDetailsButton />

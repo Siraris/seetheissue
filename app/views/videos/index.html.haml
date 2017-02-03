@@ -12,8 +12,10 @@
   .row
     .col-md-12
       %h1="Healthcare"
-      - @videos.each do |video|
-        %div{style: "width: 400px; height: 270px; float:left;"}
-          = react_component("VideoThumbnail", id: video.media_id, size: "medium")
-          /= javascript_include_tag(video_embed_tag(video.media_id))
-          = render 'share_buttons'
+      .testing
+        = react_component("VideoBox", videos: @videos)
+      / - @videos.each do |video|
+      /   %div{style: "width: 400px; height: 270px; float:left;"}
+      /     = react_component("VideoThumbnail", id: video.media_id, size: "medium")
+      /     /= javascript_include_tag(video_embed_tag(video.media_id))
+      /     = render 'share_buttons'

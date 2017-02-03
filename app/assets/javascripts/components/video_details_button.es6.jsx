@@ -1,4 +1,4 @@
-class VideoDetailsButton extends React.Component {
+export default class VideoDetailsButton extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

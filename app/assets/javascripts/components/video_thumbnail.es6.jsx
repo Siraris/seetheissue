@@ -1,3 +1,6 @@
+import VideoDetailsButton from 'components/video_details_button.es6.jsx';
+
+
 const jwUrl = "http://content.jwplatform.com/thumbs/";
 const sizes = {
   small: "360",
@@ -5,7 +8,7 @@ const sizes = {
   large: "720"
 }
 
-class VideoThumbnail extends React.Component {
+export default class VideoThumbnail extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

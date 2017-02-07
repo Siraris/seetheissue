@@ -1,6 +1,5 @@
 import VideoThumbnail from 'components/video_thumbnail.es6.jsx';
 import Popup from 'components/pop_up.es6.jsx';
-import _ from 'lodash';
 
 export default class VideoBox extends React.Component {
 
@@ -11,16 +10,6 @@ export default class VideoBox extends React.Component {
       showPopup: false
     }
     this.togglePopup = this.togglePopup.bind(this);
-  }
-
-  retrieveVideos() {
-    $.ajax('/videos/')
-      .done((data, status, XHR) => {
-
-      })
-      .fail((XHR, status, error) => {
-
-      });
   }
 
   togglePopup(e) {

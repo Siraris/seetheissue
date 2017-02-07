@@ -22,3 +22,4 @@ var ReactDOM = window.ReactDOM = global.ReactDOM = require('react-dom');
 require( 'jquery-ujs' );
 require( 'fetch' );
 require( './components' );
+require('test.js');

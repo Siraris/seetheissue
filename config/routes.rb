@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'videos#index'
+  root 'sites#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   resources :videos
+  resources :categories
 
   devise_for :users, controllers: {
     confirmations: "users/confirmations",

@@ -7,3 +7,17 @@
   background-color: #000;
   opacity: .8;
 }
+
+
+#issuenavigator {
+  width: 200px;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+
+  .hidden {
+    left: -200px;
+    top: 0px;
+  }
+
+}

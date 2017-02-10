@@ -9,6 +9,7 @@ export default class VideoIndex extends React.Component {
     this.state = {
       videos: [],
       categories: [],
+      issues: [],
       issueNavVisibility: ""
     }
     this.toggleIssueNavigator = this.toggleIssueNavigator.bind(this);
@@ -19,12 +20,20 @@ export default class VideoIndex extends React.Component {
       url: "/videos"
     }).done((data, status, xhr)=>{
       this.setState({videos: JSON.parse(data)});
+      console.log(data);
+      console.log("HILO")
     });
 
     $.ajax({
       url: "/categories"
     }).done((data, status, xhr)=>{
       this.setState({categories: JSON.parse(data)});
+    });
+
+    $.ajax({
+      url: "/issues"
+    }).done((data, status, xhr)=>{
+      this.setState({issues: JSON.parse(data)});
     });
   }
 
@@ -36,8 +45,8 @@ export default class VideoIndex extends React.Component {
   render() {
     return (
       <div className="container">
-        <Button onClick={this.toggleIssueNavigator} />
-        <IssueNavigator visibility={this.state.issueNavVisibility} />
+        <Button clickHandler={this.toggleIssueNavigator} />
+        <IssueNavigator visibility={this.state.issueNavVisibility} categories={this.state.categories} issues={this.state.issues} />
         <div className="row">
           <div className="col-md-12">
             <h1>This Rocks!</h1>

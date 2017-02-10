@@ -14,7 +14,7 @@ export default class VideoDetailsButton extends React.Component {
   render () {
     return (
       <div>
-        <button onClick={this.handleClick}>...</button>
+        <button onClick={() => {this.handleClick()}}>...</button>
         {this.state.showDetails ? <VideoDetails /> : null}
       </div>
     )

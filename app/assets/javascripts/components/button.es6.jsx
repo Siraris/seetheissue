@@ -5,7 +5,7 @@ export default class Button extends React.Component {
 
   render() {
     return (
-      <div onClick={this.props.onClick}>Button</div>
+      <div onClick={() => {this.props.clickHandler()}}>Button</div>
     )
   }
 }

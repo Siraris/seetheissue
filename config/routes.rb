@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :videos
   resources :categories
+  resources :issues
 
   devise_for :users, controllers: {
     confirmations: "users/confirmations",

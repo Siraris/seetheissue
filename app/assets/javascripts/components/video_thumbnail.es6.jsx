@@ -23,7 +23,7 @@ export default class VideoThumbnail extends React.Component {
     let thumbnailUrl = `${jwUrl + this.props.id}-${sizes[this.props.size]}.jpg`
 
     return (
-      <div onClick={this.handleClick}>
+      <div onClick={() => {this.handleClick()}}>
         <VideoDetailsButton />
         <img src={thumbnailUrl} />
       </div>

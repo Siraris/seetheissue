@@ -1,0 +1,6 @@
+- jwUrl = "http://content.jwplatform.com/thumbs/"
+- sizes = {small: "360", medium: "480", large: "720"}
+
+- videos.each do |video|
+  .video{data: {id: video.media_id, videobox:"video"}}
+    =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:small]}.jpg")

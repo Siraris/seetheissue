@@ -1,8 +1,6 @@
 class VideosController < ApplicationController
   def index
-    respond_to do |format|
-      format.html { render json: Video.all}
-    end
+    @videos = Video.all
   end
 
   def create
@@ -20,6 +18,12 @@ class VideosController < ApplicationController
   end
 
   def oauth
+  end
+
+  def list
+    respond_to do |format|
+      format.html { render json: Video.all}
+    end
   end
 
   def video_params

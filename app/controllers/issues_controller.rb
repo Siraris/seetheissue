@@ -3,7 +3,9 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html { render json: Issue.all}
     end
+  end
 
+  def show
   end
 
   def issue_params

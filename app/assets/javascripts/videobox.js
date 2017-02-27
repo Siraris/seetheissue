@@ -40,7 +40,7 @@
   // Descriptions of all options available on the demo site:
   // http://lokeshdhakar.com/projects/lightbox2/index.html#options
   Videobox.defaults = {
-    albumLabel: 'Image %1 of %2',
+    albumLabel: 'Video %1 of %2',
     alwaysShowNavOnTouchDevices: false,
     fadeDuration: 600,
     fitImagesInViewport: true,
@@ -146,18 +146,18 @@
 
     this.$videobox.find('.vb-prev').on('click', function() {
       if (self.currentVideoIndex === 0) {
-        self.changeImage(self.avbum.length - 1);
+        self.changeVideo(self.album.length - 1);
       } else {
-        self.changeImage(self.currentVideoIndex - 1);
+        self.changeVideo(self.currentVideoIndex - 1);
       }
       return false;
     });
 
     this.$videobox.find('.vb-next').on('click', function() {
       if (self.currentVideoIndex === self.album.length - 1) {
-        self.changeImage(0);
+        self.changeVideo(0);
       } else {
-        self.changeImage(self.currentVideoIndex + 1);
+        self.changeVideo(self.currentVideoIndex + 1);
       }
       return false;
     });
@@ -257,15 +257,16 @@
       $('body').addClass('vb-disable-scrolling');
     }
 
-    this.changeImage(videoNumber);
+    this.changeVideo(videoNumber);
   };
 
   // Hide most UI elements in preparation for the animated resizing of the videobox.
-  Videobox.prototype.changeImage = function(videoNumber) {
+  Videobox.prototype.changeVideo = function(videoNumber) {
     const self = this;
 
     this.disableKeyboardNav();
-    var $video = this.$videobox.find('.vb-video');
+    const $video = this.$videobox.find('.vb-video');
+    this.currentVideoIndex = videoNumber;
 
     this.$overlay.fadeIn(this.options.fadeDuration);
 
@@ -274,62 +275,70 @@
 
     this.$outerContainer.addClass('animating');
 
-    // When image to show is preloaded, we send the width and height to sizeContainer()
-    var preloader = new Image();
-    preloader.onload = function() {
-      var $preloader;
-      var imageHeight;
-      var imageWidth;
-      var maxImageHeight;
-      var maxImageWidth;
-      var windowHeight;
-      var windowWidth;
+    //$('.vb-video').html(`<script type="text/javascript" src="//content.jwplatform.com/players/${self.album[0].media_id}-z1GU7fGd.js />`);
+    $video.html(`<iframe src="//content.jwplatform.com/players/${this.album[this.currentVideoIndex].media_id}-b6nlffuj.html" width="480" height="270" frameborder="0" scrolling="auto" allowfullscreen>`);
+    this.sizeContainer($video.children().width() + 50, $video.children().height() + 50);
+    $video.show();
+    if (this.album.length - this.currentVideoIndex == 2)
+    {
+      this.getVideos();
+    }
 
-      $image.attr('src', self.album[videoNumber].link);
+    // // When image to show is preloaded, we send the width and height to sizeContainer()
+    // var preloader = new Image();
+    // preloader.onload = function() {
+    //   var $preloader;
+    //   var imageHeight;
+    //   var imageWidth;
+    //   var maxImageHeight;
+    //   var maxImageWidth;
+    //   var windowHeight;
+    //   var windowWidth;
 
-      $preloader = $(preloader);
+    //   $image.attr('src', self.album[videoNumber].link);
 
-      $image.width(preloader.width);
-      $image.height(preloader.height);
+    //   $preloader = $(preloader);
 
-      if (self.options.fitImagesInViewport) {
-        // Fit image inside the viewport.
-        // Take into account the border around the image and an additional 10px gutter on each side.
+    //   $image.width(preloader.width);
+    //   $image.height(preloader.height);
 
-        windowWidth    = $(window).width();
-        windowHeight   = $(window).height();
-        maxImageWidth  = windowWidth - self.containerPadding.left - self.containerPadding.right - self.imageBorderWidth.left - self.imageBorderWidth.right - 20;
-        maxImageHeight = windowHeight - self.containerPadding.top - self.containerPadding.bottom - self.imageBorderWidth.top - self.imageBorderWidth.bottom - 120;
+    //   if (self.options.fitImagesInViewport) {
+    //     // Fit image inside the viewport.
+    //     // Take into account the border around the image and an additional 10px gutter on each side.
 
-        // Check if image size is larger then maxWidth|maxHeight in settings
-        if (self.options.maxWidth && self.options.maxWidth < maxImageWidth) {
-          maxImageWidth = self.options.maxWidth;
-        }
-        if (self.options.maxHeight && self.options.maxHeight < maxImageWidth) {
-          maxImageHeight = self.options.maxHeight;
-        }
+    //     windowWidth    = $(window).width();
+    //     windowHeight   = $(window).height();
+    //     maxImageWidth  = windowWidth - self.containerPadding.left - self.containerPadding.right - self.imageBorderWidth.left - self.imageBorderWidth.right - 20;
+    //     maxImageHeight = windowHeight - self.containerPadding.top - self.containerPadding.bottom - self.imageBorderWidth.top - self.imageBorderWidth.bottom - 120;
 
-        // Is the current image's width or height is greater than the maxImageWidth or maxImageHeight
-        // option than we need to size down while maintaining the aspect ratio.
-        if ((preloader.width > maxImageWidth) || (preloader.height > maxImageHeight)) {
-          if ((preloader.width / maxImageWidth) > (preloader.height / maxImageHeight)) {
-            imageWidth  = maxImageWidth;
-            imageHeight = parseInt(preloader.height / (preloader.width / imageWidth), 10);
-            $image.width(imageWidth);
-            $image.height(imageHeight);
-          } else {
-            imageHeight = maxImageHeight;
-            imageWidth = parseInt(preloader.width / (preloader.height / imageHeight), 10);
-            $image.width(imageWidth);
-            $image.height(imageHeight);
-          }
-        }
-      }
-      self.sizeContainer($image.width(), $image.height());
-    };
+    //     // Check if image size is larger then maxWidth|maxHeight in settings
+    //     if (self.options.maxWidth && self.options.maxWidth < maxImageWidth) {
+    //       maxImageWidth = self.options.maxWidth;
+    //     }
+    //     if (self.options.maxHeight && self.options.maxHeight < maxImageWidth) {
+    //       maxImageHeight = self.options.maxHeight;
+    //     }
 
-    preloader.src          = this.album[videoNumber].link;
-    this.currentVideoIndex = videoNumber;
+    //     // Is the current image's width or height is greater than the maxImageWidth or maxImageHeight
+    //     // option than we need to size down while maintaining the aspect ratio.
+    //     if ((preloader.width > maxImageWidth) || (preloader.height > maxImageHeight)) {
+    //       if ((preloader.width / maxImageWidth) > (preloader.height / maxImageHeight)) {
+    //         imageWidth  = maxImageWidth;
+    //         imageHeight = parseInt(preloader.height / (preloader.width / imageWidth), 10);
+    //         $image.width(imageWidth);
+    //         $image.height(imageHeight);
+    //       } else {
+    //         imageHeight = maxImageHeight;
+    //         imageWidth = parseInt(preloader.width / (preloader.height / imageHeight), 10);
+    //         $image.width(imageWidth);
+    //         $image.height(imageHeight);
+    //       }
+    //     }
+    //   }
+    //   self.sizeContainer($image.width(), $image.height());
+    // };
+
+    // preloader.src          = this.album[videoNumber].link;
   };
 
   // Stretch overlay to fit the viewport
@@ -352,7 +361,7 @@
       self.$videobox.find('.vb-dataContainer').width(newWidth);
       self.$videobox.find('.vb-prevLink').height(newHeight);
       self.$videobox.find('.vb-nextLink').height(newHeight);
-      self.showImage();
+      self.showVideo();
     }
 
     if (oldWidth !== newWidth || oldHeight !== newHeight) {
@@ -368,7 +377,7 @@
   };
 
   // Display the image and its details and begin preload neighboring images.
-  Videobox.prototype.showImage = function() {
+  Videobox.prototype.showVideo = function() {
     this.$videobox.find('.vb-loader').stop(true).hide();
     this.$videobox.find('.vb-video').fadeIn(this.options.imageFadeDuration);
 
@@ -483,15 +492,15 @@
       this.end();
     } else if (key === 'p' || keycode === KEYCODE_LEFTARROW) {
       if (this.currentVideoIndex !== 0) {
-        this.changeImage(this.currentVideoIndex - 1);
+        this.changeVideo(this.currentVideoIndex - 1);
       } else if (this.options.wrapAround && this.album.length > 1) {
-        this.changeImage(this.album.length - 1);
+        this.changeVideo(this.album.length - 1);
       }
     } else if (key === 'n' || keycode === KEYCODE_RIGHTARROW) {
       if (this.currentVideoIndex !== this.album.length - 1) {
-        this.changeImage(this.currentVideoIndex + 1);
+        this.changeVideo(this.currentVideoIndex + 1);
       } else if (this.options.wrapAround && this.album.length > 1) {
-        this.changeImage(0);
+        this.changeVideo(0);
       }
     }
   };
@@ -508,6 +517,7 @@
     if (this.options.disableScrolling) {
       $('body').removeClass('vb-disable-scrolling');
     }
+    this.album = [];
   };
 
   Videobox.prototype.getVideos = function() {
@@ -517,7 +527,7 @@
       url: "/videos/list"
     })
     .done((data, status, xhr) => {
-      self.album = JSON.parse(data);
+      self.album = _.concat(self.album, JSON.parse(data));
       deferred.resolve();
     });
 

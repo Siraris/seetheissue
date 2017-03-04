@@ -6,16 +6,6 @@ const sizes = {
 }
 
 $(function() {
-  // $('.video').on('click', (e)=>{
-  //   retrieveVideos($(e.currentTarget).data("id"));
-  // });
+  $('.nailthumb-container').nailthumb();
 });
 
-
-function retrieveVideos(id) {
-  // $.ajax({
-  //   url: "videos/list",
-  // }).done((data, status, xhr) => {
-
-  // });
-}

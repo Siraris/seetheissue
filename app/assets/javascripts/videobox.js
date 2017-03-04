@@ -44,7 +44,7 @@
     alwaysShowNavOnTouchDevices: false,
     fadeDuration: 600,
     fitImagesInViewport: true,
-    imageFadeDuration: 600,
+    videoFadeDuration: 600,
     // maxWidth: 800,
     // maxHeight: 600,
     positionFromTop: 50,
@@ -275,8 +275,8 @@
 
     this.$outerContainer.addClass('animating');
 
-    //$('.vb-video').html(`<script type="text/javascript" src="//content.jwplatform.com/players/${self.album[0].media_id}-z1GU7fGd.js />`);
-    $video.html(`<iframe src="//content.jwplatform.com/players/${this.album[this.currentVideoIndex].media_id}-b6nlffuj.html" width="480" height="270" frameborder="0" scrolling="auto" allowfullscreen>`);
+    //$video.append(`<script src="//content.jwplatform.com/players/${self.album[0].media_id}-z1GU7fGd.js"></script>`);
+    $video.html(`<iframe src="//content.jwplatform.com/players/${this.album[this.currentVideoIndex].media_id}-z1GU7fGd.html" frameborder="0" allowfullscreen>`);
     this.sizeContainer($video.children().width() + 50, $video.children().height() + 50);
     $video.show();
     if (this.album.length - this.currentVideoIndex == 2)
@@ -365,12 +365,13 @@
     }
 
     if (oldWidth !== newWidth || oldHeight !== newHeight) {
-      this.$outerContainer.animate({
-        width: newWidth,
-        height: newHeight
-      }, this.options.resizeDuration, 'swing', function() {
-        postResize();
-      });
+      // this.$outerContainer.animate({
+      //   width: newWidth,
+      //   height: newHeight
+      // }, this.options.resizeDuration, 'swing', function() {
+      //   postResize();
+      // });
+      postResize();
     } else {
       postResize();
     }
@@ -379,7 +380,7 @@
   // Display the image and its details and begin preload neighboring images.
   Videobox.prototype.showVideo = function() {
     this.$videobox.find('.vb-loader').stop(true).hide();
-    this.$videobox.find('.vb-video').fadeIn(this.options.imageFadeDuration);
+    this.$videobox.find('.vb-video').fadeIn(this.options.videoFadeDuration);
 
     this.updateNav();
     this.updateDetails();

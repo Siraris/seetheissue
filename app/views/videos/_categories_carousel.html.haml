@@ -1,0 +1,4 @@
+.carousel{data: {slick: slicktrabutes}}
+  - categories.each do |category|
+    .carousel__category{data: {id: category.id}}
+      =image_tag(category.image, width: 220)

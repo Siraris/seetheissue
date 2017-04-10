@@ -7,20 +7,3 @@
   background-color: #000;
   opacity: .8;
 }
-
-
-#issue-navigator {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 9999;
-  #issue-content {
-    width: 200px;
-    height: 100%;
-  }
-
-  .hidden {
-    width: 0px;
-  }
-
-}

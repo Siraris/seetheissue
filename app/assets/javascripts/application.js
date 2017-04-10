@@ -15,4 +15,5 @@
 //= require_self
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require slick.min
 //= require_tree .

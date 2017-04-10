@@ -1,0 +1,57 @@
+.navbar-default {
+  background-color: #38414A !important;
+  color: #fff;
+  padding: 27px 90px 27px 95px;
+  border: none !important;
+}
+
+.navbar-brand {
+  width: 107px;
+  padding: 0 !important;
+}
+
+.navbar-nav > li {
+  margin-left: 30px;
+  a {
+    font-size: 24px;
+  }
+}
+
+.navbar-text {
+  color: #fff;
+}
+
+ul.navbar-nav {
+  list-style-type: none;
+  position: absolute;
+  bottom: 26px;
+  left: 200px;
+
+  li {
+    display:inline-block;
+    position: relative;
+  }
+}
+
+#right-content {
+  float:right;
+}
+
+#issue-navigator {
+  position: absolute;
+  left: 0px;
+  top: 35px;
+  z-index: 9999;
+  background-color: $sti-yellow;
+  color: #000;
+  padding: 0px 98px;
+  #issue-content {
+    width: 200px;
+    height: 100%;
+  }
+
+  .hidden {
+    width: 0px;
+  }
+
+}

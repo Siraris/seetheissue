@@ -1,0 +1,16 @@
+.btn {
+  border-radius: 3px;
+  color: #48535B;
+  padding: 11px 17px;
+
+  &.byb {
+    background-color: $sti-yellow;
+  }
+  img {
+    display:inline-block;
+  }
+  p {
+    display:inline-block;
+    margin: 0;
+  }
+}

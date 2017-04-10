@@ -7,5 +7,7 @@ const sizes = {
 
 $(function() {
   $('.nailthumb-container').nailthumb();
+
+  $('.carousel').slick()
 });
 

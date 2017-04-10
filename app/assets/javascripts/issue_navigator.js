@@ -25,6 +25,10 @@ $(function() {
       ? showContent(content, $(e.currentTarget))
       : hideContent(content, $(e.currentTarget));
   });
+
+  $('#issue-navigator').on('mouseleave', (e) => {
+    $(e.currentTarget).toggle();
+  });
 });
 
 function populateCategories(categories) {

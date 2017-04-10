@@ -1,0 +1,7 @@
+- if user_signed_in?
+  = form_for Video.new do |f|
+    =f.file_field :content, {accept: "video/*;capture=camcorder"}
+    =f.select :category_id, Category.all.collect {|cat| [cat.name, cat.id]}, class: 'form-control', include_blank: true
+    =f.submit
+- else
+  %button.btn.btn-info{type: "button", data: {toggle: 'modal', target: '#signupModal'}}="Sign in to post a video"

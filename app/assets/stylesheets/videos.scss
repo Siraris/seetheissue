@@ -7,3 +7,62 @@
   height: 200px;
   float: right;
 }
+
+.video-montage {
+  margin-bottom: 20px;
+  .montage__container {
+    float:left;
+    img {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .montage__container {
+    .montage__large {
+      width: 100%;
+    }
+
+    .montage__small {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+  .montage__container {
+    .montage__large {
+      width: 98%;
+    }
+
+    .montage__small {
+      width: 47%;
+    }
+  }
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max){
+  .montage__container {
+    .montage__large {
+      width: 98%;
+    }
+
+    .montage__small {
+      width: 47.5%;
+    }
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  .montage__container {
+    .montage__large {
+      width: 98%;
+    }
+
+    .montage__small {
+      width: 48%;
+    }
+  }
+}

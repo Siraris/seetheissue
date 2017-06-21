@@ -1,5 +1,5 @@
 en:
   application:
-    upload_video: Upload a video
     navbar:
-      cta: Everybody has an opinion. What's yours?
+      upload_video: Upload a video
+      cta_html: Everybody has an opinion. <br />What's yours?

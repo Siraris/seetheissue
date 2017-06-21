@@ -10,22 +10,30 @@
   padding: 0 !important;
 }
 
+.navbar-nav span {
+  width: 190px;
+  font-size: 15px;
+  display:block;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
 .navbar-nav > li {
-  margin-left: 30px;
+  margin-left: 10px;
   a {
     font-size: 24px;
+    color: #fff !important;
   }
 }
 
-.navbar-text {
-  color: #fff;
-}
 
 ul.navbar-nav {
   list-style-type: none;
   position: absolute;
   bottom: 26px;
   left: 200px;
+  margin-left: 6%;
 
   li {
     display:inline-block;

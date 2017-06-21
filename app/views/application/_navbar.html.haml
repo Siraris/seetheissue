@@ -1,15 +1,21 @@
 %nav.navbar.navbar-toggleable-md.navbar-default{ role: 'navigation' }
-  %a.navbar-brand{href: "#"}
-    =image_tag 'seetheissue.png', {width: "107px", height: "92px"}
-  .collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item
-        =link_to "#", {class: 'nav-link'} do
-          ="How It Works"
-      %li.nav-item
-        =link_to "#", {class: 'nav-link explore-videos'} do
-          ="Explore Videos"
-        = render 'issue_navigator'
-  #right-content
-    %h2=t('.cta')
-    =render 'byb', text: t('.upload_video')
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{data: {toggle: "collapse", target: "#header__nav"}}
+      %a.navbar-brand{href: "#"}
+    </div>
+    .collapse.navbar-collapse#header__nav
+      .navbar-header
+        %a.navbar-brand{href: "#"}
+          =image_tag 'logo.png', {width: "107px", height: "92px"}
+      %ul.nav.navbar-nav.mr-auto
+        %li.nav-item
+          =link_to "#", {class: 'nav-link'} do
+            ="How It Works"
+        %li.nav-item
+          =link_to "#", {class: 'nav-link explore-videos'} do
+            ="Explore Videos"
+          = render 'issue_navigator'
+      .nav.navbar-nav.navbar-right
+        %span=t('.cta_html')
+        =render 'byb', text: t('.upload_video')

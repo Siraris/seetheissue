@@ -1,0 +1,7 @@
+.video-montage
+  .montage__container.col-lg-5.col-md-6.col-sm-5
+    =image_tag(most_viewed, class: "montage__large")
+  .montage__container.col-lg-7.col-md-6.col-sm-7
+    - around_site.each do |image|
+      =image_tag(image, class: "montage__small")
+  .clear

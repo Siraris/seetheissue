@@ -47,12 +47,12 @@ ul.navbar-nav {
 
 #issue-navigator {
   position: absolute;
-  left: 0px;
-  top: 35px;
+  left: -85px;
+  top: 96px;
   z-index: 9999;
   background-color: $sti-yellow;
   color: #000;
-  padding: 0px 98px;
+  padding: 40px 98px;
   #issue-content {
     width: 200px;
     height: 100%;
@@ -60,6 +60,33 @@ ul.navbar-nav {
 
   .hidden {
     width: 0px;
+  }
+
+  .category__container {
+    border-bottom: 1px solid #A09507;
+    padding: 25px 0px;
+  }
+
+  .category, .category span {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .plus, .minus {
+    display: inline;
+    margin-left: 4px;
+  }
+
+  .issues {
+    margin-left: 35px;
+    margin-top: 38px;
+
+    a {
+      display:block;
+      color: #000 !important;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
   }
 
 }

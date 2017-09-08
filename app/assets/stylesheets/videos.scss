@@ -19,6 +19,21 @@
   }
 }
 
+.carousel__container {
+  width: 85%;
+  margin: 0 auto 44px auto;
+  border-bottom: 1px solid #888B8F;
+  padding-bottom: 27px;
+
+  p {
+    color: $sti-yellow;
+  }
+
+  .last {
+    border: none;
+  }
+}
+
 @media (max-width: $screen-xs-max) {
   .montage__container {
     .montage__large {

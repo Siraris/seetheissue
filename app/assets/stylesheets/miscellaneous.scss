@@ -1,13 +1,14 @@
 .btn {
-  border-radius: 3px;
+  border-radius: 5px;
   color: #48535B;
-  padding: 11px 17px;
+  padding: 16px 38px 16px 22px;
 
   &.byb {
     background-color: $sti-yellow;
   }
   img {
     display:inline-block;
+    margin-right: 16px;
   }
   p {
     display:inline-block;
@@ -15,6 +16,26 @@
   }
 }
 
+.darkblue {
+  background-color: $sti-darkblue
+}
+
+.bold {
+  font-weight:bold;
+}
+
 .clear {
   clear:both;
+}
+
+.call_to_action {
+  text-align:center;
+  padding: 50px 0 25px 0;
+  h1 {
+    margin-bottom: 25px;
+  }
+}
+
+.white__container {
+  background-color:#fff;
 }

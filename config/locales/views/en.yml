@@ -3,3 +3,11 @@ en:
     navbar:
       upload_video: Upload a video
       cta_html: Everybody has an opinion. <br />What's yours?
+  call_to_action:
+    post_an_issue: Pick an issue. Post a video.
+    share_button: Share a Video
+  videos:
+    index:
+      issues: Issues
+      categories: Explore Categories
+      how_works: How It Works

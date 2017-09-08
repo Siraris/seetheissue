@@ -2,3 +2,36 @@ body {
   background-color: $sti-darkblue !important;
   color: #fff !important;
 }
+
+/*
+  Video index
+*/
+
+.categories-explore {
+  padding: 60px;
+}
+
+.videos-explore {
+  h3 {
+    margin-left: 7.5%;
+  }
+}
+
+h3 {
+  &.lightblue {
+    color: $sti-lightblue;
+  }
+
+  &.lighterblue {
+    color: $sti-lighterblue;
+  }
+}
+
+.how-it-works {
+  padding: 80px 0;
+  text-align:center;
+}
+
+/*
+  End Video Index
+*/

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :videos do
     collection do
       get :list
+      get :plays
     end
   end
   resources :categories

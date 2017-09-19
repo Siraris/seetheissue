@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20161213203043) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "image",      limit: 255
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,12 +42,23 @@ ActiveRecord::Schema.define(version: 20161213203043) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "issues", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.string   "description",  limit: 255
+    t.integer  "category_id",  limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "videos", force: :cascade do |t|
     t.string   "url",         limit: 255
-    t.integer  "category_id", limit: 4
+    t.integer  "media_id",    limit: 4
+    t.integer  "issue_id",    limit: 4
     t.string   "user_id",     limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "views",       limit: 4
+    t.string   "title",       limit: 300
   end
 
 end

@@ -1,4 +1,6 @@
 .call_to_action
   %h1
     =text
+  - if defined? sub_text
+    =sub_text
   =render 'byb', text: button_text

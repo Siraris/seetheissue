@@ -7,3 +7,8 @@
     - videos.each do |video|
       .carousel__category{data: {id: video.media_id, videobox:"video"}}
         =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:small]}.jpg", width: sizes[:small])
+        .text
+          - days = (Date.today - video.created_at.to_date).to_i
+          - time = (days / 7 <= 1) ? "#{days} days ago" : "#{days / 7} weeks ago"
+          %p="#{video.views} views / #{time}"
+          %p="Hello This is going to be some cool stuff"

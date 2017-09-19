@@ -29,7 +29,7 @@ CREATE TABLE `categories` (
   `updated_at` datetime NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ DROP TABLE IF EXISTS `issues`;
 CREATE TABLE `issues` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -105,14 +106,37 @@ DROP TABLE IF EXISTS `videos`;
 CREATE TABLE `videos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `media_id` varchar(255) DEFAULT NULL,
-  `category_id` int(11) DEFAULT NULL,
+  `issue_id` int(11) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `views` int(11) DEFAULT NULL,
+  `views` int(11) DEFAULT '0',
   `title` varchar(300) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_videos_on_user_id_and_issue_id` (`user_id`,`issue_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `votes`
+--
+
+DROP TABLE IF EXISTS `votes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `votes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `issue_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `vote` smallint(6) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_votes_on_issue_id` (`issue_id`),
+  KEY `index_votes_on_user_id` (`user_id`),
+  CONSTRAINT `fk_rails_c9b3bef597` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `fk_rails_f986c14a92` FOREIGN KEY (`issue_id`) REFERENCES `issues` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -124,7 +148,7 @@ CREATE TABLE `videos` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-09 17:11:50
+-- Dump completed on 2017-09-18 16:18:21
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -138,4 +162,8 @@ INSERT INTO schema_migrations (version) VALUES ('20170209200341');
 INSERT INTO schema_migrations (version) VALUES ('20170313172708');
 
 INSERT INTO schema_migrations (version) VALUES ('20170409220557');
+
+INSERT INTO schema_migrations (version) VALUES ('20170914212907');
+
+INSERT INTO schema_migrations (version) VALUES ('20170918211112');
 

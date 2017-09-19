@@ -1,0 +1,17 @@
+#footer {
+  padding: 40px 0px;
+
+  .share__btn {
+    margin-right: 31px;
+  }
+
+  .logo {
+    margin-top: 28px;
+  }
+
+  @media (max-width: 480px) {
+    .left, .right, .center {
+      margin-bottom: 30px;
+    }
+  }
+}

@@ -5,13 +5,15 @@
     =render 'videos/inline_video', video_id: @videos.first.media_id
 #issue-block__container.container-fluid
   .row
-    .col-md-6.col-md-offset-1
+    .col-md-6.col-md-offset-2
       %h1=@issue.name
       %p=@issue.description
     .col-md-2
       %h2="FOR"
     .col-md-2
       %h2="AGAINST"
+  .row
+    .col-md-8
     .col-md-2
       %h2="Total videos for this issue"
       %p=@issue_video_count
@@ -19,7 +21,7 @@
       %h2="Share this issue"
       =render 'share_buttons'
 #issue-related__videos.container-fluid
-  %h3.lightblue="More Videos About #{@issue.name}"
+  %h2="More Videos About #{@issue.name}"
   - video_count = @issue_video_count / 20
   // Set length to max 2 so we only get 3 rows... perhaps we should do more, or perhaps we should have a nice grid below?
   - length = video_count > 3 ? 2 : video_count

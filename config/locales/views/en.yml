@@ -1,10 +1,14 @@
 en:
   application:
+    footer:
+      copyright_html: "&#169; See The Issue, LLC. All rights reserved."
     navbar:
       upload_video: Upload a video
       cta_html: Everybody has an opinion. <br />What's yours?
   call_to_action:
     post_an_issue: Pick an issue. Post a video.
+    everybody_opinion: Everybody has an opinion. What's yours?
+    opinion_sub_html: <p>Find an issue you're passionate about.</p><p>Watch a few videos. <strong>Share your response.</strong></p>
     share_button: Share a Video
   videos:
     index:

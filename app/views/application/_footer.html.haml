@@ -1,0 +1,11 @@
+#footer
+  .container-fluid
+    .row
+      .col-md-4.left.text-center
+        =t('.copyright_html')
+      .col-md-4.center.text-center
+        =render "share_buttons"
+        .logo
+          =image_tag 'logo.png', {width: "107px", height: "92px"}
+      .col-md-4.right.text-center
+        =render 'byb', text: t('call_to_action.share_button')

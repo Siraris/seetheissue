@@ -1,6 +1,25 @@
+@font-face {
+  font-family: "Festivo LC Basic";
+  src: url("/fonts/FestivoLC-Basic.ttf") format("ttf"),
+       url("/fonts/FestivoLC-Basic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Bebas";
+  src: url("/fonts/Bebas.ttf") format("ttf"),
+       url("/fonts/Bebas.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Festivo LC Basic R Shadow";
+  src: url("/fonts/FestivoLC-BasicRShadow.ttf") format("ttf"),
+       url("/fonts/FestivoLC-BasicRShadow.woff") format("woff");
+}
+
 body {
   background-color: $sti-darkblue !important;
   color: #fff !important;
+  font-family: 'Festivo LC Basic', serif;
 }
 
 /*
@@ -20,10 +39,12 @@ body {
 h3 {
   &.lightblue {
     color: $sti-lightblue;
+    font-family: "Festivo LC Basic R Shadow";
   }
 
   &.lighterblue {
     color: $sti-lighterblue;
+    font-family: "Festivo LC Basic R Shadow";
   }
 }
 
@@ -35,3 +56,39 @@ h3 {
 /*
   End Video Index
 */
+
+/*
+  Issue show
+ */
+
+ #issue-block__container {
+  color: black;
+  .row:first-child {
+    padding: 40px 0px;
+    background-color: #EBF5F6;
+  }
+
+  .row:nth-child(2) {
+    background-color: #fff;
+    padding: 40px 0px;
+  }
+ }
+
+/*
+  End Issue show
+ */
+
+/*
+  How it Works 
+*/
+
+#how-it-works__container {
+  .row {
+    background-color:#fff;
+    padding: 50px;
+  }
+}
+
+/*
+  End How it works
+ */

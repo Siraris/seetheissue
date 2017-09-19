@@ -11,14 +11,32 @@ class VideosController < ApplicationController
     result = jwService.create_video(params)
     key = jwService.upload_video(result, params)
 
-    Video.create({
-      media_id: key,
-      category_id: video_params[:category_id],
-      user_id: current_user.id
-    }).save()
+    begin
+      @video = Video.create({
+        media_id: key,
+        issue_id: video_params[:issue_id],
+        user_id: current_user.id
+      }).save()
+
+      render(json: @video)
+    rescue ActiveRecord::RecordNotUnique
+      # Find existing video and return info?  For deletion?
+       render(json: { error: "Duplicate video for this issue" },
+        status: :unprocessable_entity
+      )
+    end
   end
 
   def oauth
+  end
+
+  def plays
+    # NOTE: Need to implement page consumption by recursively calling 
+    # Can we get if there's more than one page of data?
+    # or do we need to check page_length and if at 100, get next page?
+    jwService = JWService.new
+    result = jwService.plays()
+    puts result
   end
 
   def list
@@ -28,6 +46,6 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:content, :category_id)
+    params.require(:video).permit(:content, :issue_id)
   end
 end

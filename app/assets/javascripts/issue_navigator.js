@@ -30,6 +30,17 @@ $(function() {
   $('#issue-navigator').on('mouseleave', (e) => {
     $(e.currentTarget).toggle();
   });
+
+  $('#uploadModal #category_id').on('change', (e) => {
+    $('#issue-select__container').show();
+    const issueSelect = $('#video_issue_id');
+    issueSelect.html(""); // Reset issue container options
+    for (let i = 0, len = issues.length; i < len; i++) {
+      if (issues[i].category_id === parseInt($(e.currentTarget).val())) {
+        issueSelect.append($("<option />").val(issues[i].id).text(issues[i].name));
+      }
+    }
+  });
 });
 
 function populateCategories(categories) {
@@ -44,15 +55,15 @@ function populateCategories(categories) {
   });
   $('#categories').html(categoryArray.join(""));
   $('.category__container').on("click", (e)=>{
-    const issues = $(e.currentTarget).children('.issues'),
+    const issueElements = $(e.currentTarget).children('.issues'),
     plus = $(e.currentTarget).find('.plus'),
     minus = $(e.currentTarget).find('.minus');
-    if (issues.hasClass('hidden')) {
-      issues.removeClass('hidden');
+    if (issueElements.hasClass('hidden')) {
+      issueElements.removeClass('hidden');
       plus.addClass('hidden');
       minus.removeClass('hidden');
     } else {
-      issues.addClass('hidden');
+      issueElements.addClass('hidden');
       plus.removeClass('hidden');
       minus.addClass('hidden');
     }

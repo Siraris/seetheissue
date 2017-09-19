@@ -1,7 +1,36 @@
-- if user_signed_in?
-  = form_for Video.new do |f|
-    =f.file_field :content, {accept: "video/*;capture=camcorder"}
-    =f.select :category_id, Category.all.collect {|cat| [cat.name, cat.id]}, class: 'form-control', include_blank: true
-    =f.submit
-- else
-  %button.btn.btn-info{type: "button", data: {toggle: 'modal', target: '#signupModal'}}="Sign in to post a video"
+#uploadModal.modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "uploadModalLabel"}}
+  .modal-dialog.modal-md{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button", onClick:"document.getElementById('new_video').reset()"}
+          %span{aria: { hidden: "true"}} &times;
+        %h4.modal-title#uploadModalLabel="What's On Your Mind?"
+      .br-modal__scroll
+        .modal-body.text-center
+          - if user_signed_in?
+            = form_for Video.new, remote: true do |f|
+              = hidden_field_tag :authenticity_token, form_authenticity_token
+              .form-group
+                = f.label "Select a Category"
+              .form-group
+                = select_tag :category_id, options_for_select(Category.all.collect {|cat| [cat.name, cat.id]}), include_blank: true
+              #issue-select__container{style: "display:none;"}
+                .form-group
+                  = f.label "Select an Issue"
+                .form-group
+                  = f.select :issue_id, "", class: 'form-control', include_blank: true
+              %hr
+              .form-group
+                = f.label "Attach Your File"
+              .form-group
+                =f.file_field :content, {accept: "video/*;capture=camcorder"}
+              .form-group
+                =f.radio_button :votes, "support"
+                =label_tag 'votes', nil, class: 'support vote__selector'
+              .form-group
+                =f.radio_button :votes, "oppose"
+                =label_tag 'votes', nil, class: 'oppose vote__selector'
+              %hr
+              =f.submit "Add Your Voice", class: "btn btn-lg byb"
+          - else
+            %button.btn.btn-info{type: "button", data: {toggle: 'modal', target: '#signupModal'}}="Sign in to post a video"

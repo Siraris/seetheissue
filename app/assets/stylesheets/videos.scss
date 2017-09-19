@@ -25,12 +25,28 @@
   border-bottom: 1px solid #888B8F;
   padding-bottom: 27px;
 
-  p {
+  p:first-child {
     color: $sti-yellow;
+    font-family: "Khand";
   }
 
   .last {
     border: none;
+  }
+
+  .carousel__category {
+    .text {
+      width: 85%;
+
+      p:first-child {
+        font-weight: 700;
+      }
+
+      p {
+        font-family: "Open Sans", sans-serif;
+        color: #fff;
+      }
+    }
   }
 }
 

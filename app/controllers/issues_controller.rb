@@ -6,6 +6,9 @@ class IssuesController < ApplicationController
   end
 
   def show
+    @issue = Issue.where(id: params[:id]).first
+    @videos = Video.where(issue_id: params[:id])
+    @issue_video_count = Video.where(issue_id: params[:id]).count('id')
   end
 
   def issue_params

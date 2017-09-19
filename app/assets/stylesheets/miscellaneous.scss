@@ -5,6 +5,8 @@
 
   &.byb {
     background-color: $sti-yellow;
+    font-family: "Open Sans";
+    font-weight: bold;
   }
   img {
     display:inline-block;
@@ -30,7 +32,8 @@
 
 .call_to_action {
   text-align:center;
-  padding: 50px 0 25px 0;
+  min-height: 267px;
+  padding: 39px 0 25px 0;
   h1 {
     margin-bottom: 25px;
   }
@@ -38,4 +41,80 @@
 
 .white__container {
   background-color:#fff;
+}
+
+
+.twitter-share {
+  img {
+    width: 35px;
+  }
+}
+
+
+.facebook-share {
+  img {
+    width: 18px;
+  }
+}
+
+#uploadModal {
+  .modal-header {
+    border: none;
+  }
+
+  .modal-content {
+    background-color: $sti-darkblue;
+
+    label {
+      font-size: 30px;
+    }
+
+    select {
+      width: 300px;
+      height: 50px;
+      color: black;
+      font-size: 20px;
+    }
+
+    input[type="file"] {
+      margin: 0px auto;
+    }
+
+    input[type="radio"]{
+        margin: 0;
+        padding: 0;
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+    }
+    .support {background-image:url('Thumb up selected.png');}
+    .oppose {background-image:url('Thumb down selected.png');}
+
+    input[type="radio"]:active +label{opacity: .9;}
+    input[type="radio"]:checked +label{
+        -webkit-filter: none;
+           -moz-filter: none;
+                filter: none;
+    }
+    .vote__selector{
+        font-size: 9px;
+        cursor:pointer;
+        background-size: contain;
+        background-repeat:no-repeat;
+        display: inline-block;
+        width:50px;
+        height:20px;
+        -webkit-transition: all 100ms ease-in;
+           -moz-transition: all 100ms ease-in;
+                transition: all 100ms ease-in;
+        -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+           -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+                filter: brightness(1.8) grayscale(1) opacity(.7);
+    }
+    .vote__selector:hover{
+        -webkit-filter: brightness(1.2) grayscale(0) opacity(.9);
+           -moz-filter: brightness(1.2) grayscale(0) opacity(.9);
+                filter: brightness(1.2) grayscale(0) opacity(.9);
+    }
+  }
 }

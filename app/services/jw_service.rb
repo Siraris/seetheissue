@@ -2,7 +2,8 @@
 # API
 class JWService
   def initialize
-    @base_uri = "api.jwplatform.com/v1"
+    @base_uriv1 = "api.jwplatform.com/v1"
+    @base_uriv2 = "api.jwplayer.com/v2"
   end
 
   # Creates a temporary video link on JWPlatform
@@ -21,12 +22,29 @@ class JWService
     options[:params] = options[:params].merge!(api_settings(options[:params]))
 
     begin
-      response = RestClient.get(@base_uri + '/videos/create', options)
+      response = RestClient.get(@base_uriv1 + '/videos/create', options)
       if (response.code == 200)
         JSON.parse(response.body, object_class: OpenStruct)
       end
     rescue Exception => e
       puts e.message
+    end
+  end
+
+  # Returns the number of plays for all media_ids
+  def plays(page = 0)
+    video_url = "https://#{@base_uriv2}/sites/#{ENV.fetch('JW_API_KEY')}/analytics/queries/"
+    begin
+      response = RestClient.post(video_url, {start_date: "2017-01-01", end_date: "2017-09-15",
+          dimensions: ["media_id"], page: page, metrics: [{operation: "sum", field: "plays"}], sort: [{field: "plays", order: "DESCENDING"}]
+        }.to_json, :authorization => ENV.fetch('JW_API_REPORTING_SECRET'), :content_type => "application/json"
+        )
+
+      if (response.code == 200)
+        JSON.parse(response.body, object_class: OpenStruct)
+      end
+    rescue Exception => e
+      puts e.response
     end
   end
 

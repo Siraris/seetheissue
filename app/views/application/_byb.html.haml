@@ -1,3 +1,5 @@
-%button.byb.btn.btn-lg{data:{"toggle":"modal", "target":"#uploadModal"}}
+- target = (user_signed_in?) ? "#uploadModal" : "#loginModal"
+
+%button.byb.btn.btn-lg{data:{"toggle":"modal", "target":target}}
   =image_tag 'upload.png', width: 25, height: 25, class: "byb"
   %p.bold=text

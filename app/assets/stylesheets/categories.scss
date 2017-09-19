@@ -1,0 +1,17 @@
+.carousel {
+  .carousel__category {
+    position: relative;
+    width: 50%;
+    h3 {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      text-align:center;
+      line-height: 135px;
+      margin: 0;
+      background: rgba(0,0,0,.2);
+      width: 220px;
+      height: 100%
+    }
+  }
+}

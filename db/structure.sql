@@ -112,9 +112,10 @@ CREATE TABLE `videos` (
   `updated_at` datetime NOT NULL,
   `views` int(11) DEFAULT '0',
   `title` varchar(300) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_videos_on_user_id_and_issue_id` (`user_id`,`issue_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +149,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-18 16:18:21
+-- Dump completed on 2017-09-20 15:13:22
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -166,4 +167,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170409220557');
 INSERT INTO schema_migrations (version) VALUES ('20170914212907');
 
 INSERT INTO schema_migrations (version) VALUES ('20170918211112');
+
+INSERT INTO schema_migrations (version) VALUES ('20170920201213');
 

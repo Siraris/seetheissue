@@ -1,7 +1,7 @@
 class IssuesController < ApplicationController
   def index
     respond_to do |format|
-      format.html { render json: Issue.all}
+      format.js { render json: Issue.all}
     end
   end
 

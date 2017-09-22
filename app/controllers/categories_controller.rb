@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def index
     respond_to do |format|
-      format.html { render json: Category.all}
+      format.js { render json: Category.all}
     end
 
   end

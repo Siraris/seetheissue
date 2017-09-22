@@ -44,6 +44,8 @@ gem 'react-rails'
 
 gem "browserify-rails"
 
+gem 'remotipart', '~> 1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

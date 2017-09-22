@@ -6,31 +6,49 @@
           %span{aria: { hidden: "true"}} &times;
         %h4.modal-title#uploadModalLabel="What's On Your Mind?"
       .br-modal__scroll
-        .modal-body.text-center
+        .modal-body
           - if user_signed_in?
-            = form_for Video.new, remote: true do |f|
+            = form_for Video.new, remote: true, html: {multipart: true}, data: { type: :json }  do |f|
               = hidden_field_tag :authenticity_token, form_authenticity_token
-              .form-group
-                = f.label "Select a Category"
-              .form-group
-                = select_tag :category_id, options_for_select(Category.all.collect {|cat| [cat.name, cat.id]}), include_blank: true
-              #issue-select__container{style: "display:none;"}
-                .form-group
-                  = f.label "Select an Issue"
-                .form-group
-                  = f.select :issue_id, "", class: 'form-control', include_blank: true
+              #category-issue__container
+                #category-select__container
+                  .form-group
+                    = f.label "Select a Category"
+                  .form-group
+                    = select_tag :category_id, options_for_select(Category.all.collect {|cat| [cat.name, cat.id]}), include_blank: true
+                #issue-select__container{style: "display:none;"}
+                  .form-group
+                    = f.label "Select an Issue"
+                  .form-group
+                    = f.select :issue_id, "", class: 'form-control'
+                .clear
               %hr
-              .form-group
-                = f.label "Attach Your File"
-              .form-group
-                =f.file_field :content, {accept: "video/*;capture=camcorder"}
-              .form-group
-                =f.radio_button :votes, "support"
-                =label_tag 'votes', nil, class: 'support vote__selector'
-              .form-group
-                =f.radio_button :votes, "oppose"
-                =label_tag 'votes', nil, class: 'oppose vote__selector'
-              %hr
-              =f.submit "Add Your Voice", class: "btn btn-lg byb"
+              #second-upload__step{style: "display:none;"}
+                .form-group.text-center
+                  = f.label "Attach Your File"
+                  %br
+                  =f.file_field :content, {accept: "video/*;capture=camcorder"}
+                #title-description__container
+                  #title-input__container
+                    .form-group
+                      = f.label "Enter a Title"
+                    .form-group
+                      =f.text_field :title
+                  #description-input__container
+                    .form-group
+                      = f.label "Enter a Description"
+                    .form-group
+                      =f.text_area :description
+                  .clear
+                .form-group.text-center
+                  =f.radio_button :votes, "support"
+                  =label_tag 'Support', nil, class: 'support vote__selector'
+                  =f.radio_button :votes, "oppose"
+                  =label_tag 'Oppose', nil, class: 'oppose vote__selector'
+                %hr
+                .form-group
+                  %p#upload-modal__errors.error.text-center
+                .form-group.text-center
+                  =f.submit "Add Your Voice", class: "btn btn-lg byb", remote: true
           - else
             %button.btn.btn-info{type: "button", data: {toggle: 'modal', target: '#signupModal'}}="Sign in to post a video"

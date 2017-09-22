@@ -1,29 +1,38 @@
 class VideosController < ApplicationController
+
   def index
     @videos = Video.all
     @categories = Category.all
   end
 
   def create
+
     # TODO Check to see size of file? We can't let anything over 5 GB
     # which would be a ridiculous size regardless
-    jwService = JWService.new
-    result = jwService.create_video(params)
-    key = jwService.upload_video(result, params)
+
+    # Check to see if user has already uploaded video for this issue
+    # so we don't upload duplicates to hosted JW Player
+    result = Video.where({
+      issue_id: video_params[:issue_id].to_i,
+      user_id: current_user.id
+    })
+
+    unless result.empty?
+      render(json: { error_message: "Duplicate video for this issue, you can delete it from your profile to upload a new video.", error_code: "duplicate_video" },
+        status: :unprocessable_entity
+      ) and return
+    end
+
+    key = create_video(params)
 
     begin
       @video = Video.create({
         media_id: key,
-        issue_id: video_params[:issue_id],
+        issue_id: video_params[:issue_id].to_i,
         user_id: current_user.id
       }).save()
 
       render(json: @video)
-    rescue ActiveRecord::RecordNotUnique
-      # Find existing video and return info?  For deletion?
-       render(json: { error: "Duplicate video for this issue" },
-        status: :unprocessable_entity
-      )
     end
   end
 
@@ -46,6 +55,14 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:content, :issue_id)
+    params.require(:video).permit(:content, :issue_id, :user_id, :title, :description)
+  end
+
+  private
+
+  def create_video(params)
+    jwService = JWService.new
+    result = jwService.create_video(params)
+    return jwService.upload_video(result, params)
   end
 end

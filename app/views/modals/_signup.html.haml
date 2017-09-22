@@ -1,10 +1,10 @@
 #signupModal.modal.auth__modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "signupModalLabel"}}
-  .modal-dialog.modal-sm{role: "document"}
+  .modal-dialog.modal-md{role: "document"}
     .modal-content
       .modal-header
         %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
           %span{aria: { hidden: "true"}} &times;
-        %h4.modal-title#signupModalLabel= t('.sign_up')
+        %h4.modal-title#signupModalLabel= t('.sign_up_share')
       .br-modal__scroll
         .modal-body
           = form_for User.new, url: registration_path(:user), remote: true,
@@ -34,6 +34,6 @@
               data: { 'disable-with' => t('.signing_up_html') }
         .modal-footer
           = link_to t('.log_in'), '#',
-            class: 'btn btn-default',
+            class: 'btn btn-default log-in',
             data: { toggle: 'modal', target: '#loginModal' },
             form_class: 'pull-right'

@@ -1,10 +1,10 @@
 #loginModal.modal.auth__modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "loginModalLabel"}}
-  .modal-dialog.modal-sm{role: "document"}
+  .modal-dialog.modal-md{role: "document"}
     .modal-content
       .modal-header
         %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
           %span{aria: { hidden: "true"}} &times;
-        %h4.modal-title#loginModalLabel= t('.log_in')
+        %h4.modal-title#loginModalLabel= t('.log_in_share')
       .br-modal__scroll
         .modal-body
           = form_for User.new, url: session_path(:user),
@@ -35,6 +35,6 @@
               data: { 'disable-with' => t('.logging_in_html') }
         .modal-footer
           = link_to t('.sign_up'), '#',
-            class: 'btn btn-default',
+            class: 'btn btn-default sign-up',
             data: { toggle: 'modal', target: '#signupModal' },
             form_class: 'pull-right'

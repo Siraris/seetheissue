@@ -1,0 +1,9 @@
+#profile__container {
+  .row:first-child {
+    background-color: #fff;
+    color: #000;
+  }
+  .row:nth-child(2) {
+    padding: 75px 0px;
+  }
+}

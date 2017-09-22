@@ -29,6 +29,14 @@ Rails.application.routes.draw do
     unlocks: "users/unlocks"
   }
 
+  get '/profile', to: "users#show"
+
+  resource :user, only: %i(destroy show update) do
+    member do
+      patch :update_password
+    end
+  end
+
   # Example resource route with options:
   #   resources :products do
   #     member do

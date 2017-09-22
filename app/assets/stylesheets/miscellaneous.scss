@@ -61,6 +61,58 @@
   }
 }
 
+.auth__modal {
+  .alert {
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    text-decoration: none;
+  }
+
+  .auth__modal__remember {
+    margin-left: 20px;
+  }
+
+  .sign-up, .log-in {
+    font-size: 17px;
+    padding: 12px;
+  }
+
+  .checkbox label {
+    padding-top: 2px;
+    padding-left: 0;
+  }
+
+  .modal-content {
+    background: $sti-darkblue;
+  }
+
+  .button_to {
+    margin-bottom: 15px;
+  }
+
+  .modal-footer p {
+    margin-top: 4px;
+  }
+
+  button[type="submit"] {
+    background-color: #F9E900;
+  }
+}
+
+.auth__modal__error {
+  margin: 0;
+}
+
+.auth__modal__errors {
+  display: none;
+}
+
+.auth__modal__remember {
+  margin: 0;
+}
+
 #uploadModal {
   .modal-header {
     border: none;

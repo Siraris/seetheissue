@@ -10,6 +10,24 @@ en:
     everybody_opinion: Everybody has an opinion. What's yours?
     opinion_sub_html: <p>Find an issue you're passionate about.</p><p>Watch a few videos. <strong>Share your response.</strong></p>
     share_button: Share a Video
+  modals:
+    login:
+      sign_up: Sign Up
+      forgot_password: Forgot Password
+      log_in: Login
+      remember_me: Remember Me
+      log_in_share: Login To Share Your Voice
+      logging_in_html: Logging In
+    signup:
+      sign_up: Sign Up
+      sign_up_share: Sign Up To Share Your Voice
+      log_in: Login
+      signing_up_html: Registering
+  users:
+    show:
+      username: Username
+      name: Name
+      edit_button: Edit
   videos:
     index:
       issues: Issues

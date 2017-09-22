@@ -12,13 +12,17 @@
         %li.nav-item
           =link_to "#", {class: 'nav-link'} do
             ="How It Works"
-        - if user_signed_in?
-          %li
-            = link_to "sign out", destroy_user_session_path, method: :delete
         %li.nav-item
           =link_to "#", {class: 'nav-link explore-videos'} do
             ="Explore Videos"
           = render 'issue_navigator'
+        - if user_signed_in?
+          %li
+            =link_to "My Profile", "/profile"
+            = link_to "sign out", destroy_user_session_path, method: :delete
+        - else
+          %li
+            = link_to "Login", "#", data: {toggle: 'modal', target: '#signupModal'}
       .nav.navbar-nav.navbar-right
         %span=t('.cta_html')
         =render 'byb', text: t('.upload_video')

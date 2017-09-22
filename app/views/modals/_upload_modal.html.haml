@@ -22,30 +22,29 @@
                   .form-group
                     = f.select :issue_id, "", class: 'form-control'
                 .clear
-              %hr
               #second-upload__step{style: "display:none;"}
-                .form-group.text-center
-                  = f.label "Attach Your File"
-                  %br
-                  =f.file_field :content, {accept: "video/*;capture=camcorder"}
-                #title-description__container
-                  #title-input__container
-                    .form-group
-                      = f.label "Enter a Title"
-                    .form-group
-                      =f.text_field :title
-                  #description-input__container
-                    .form-group
-                      = f.label "Enter a Description"
-                    .form-group
-                      =f.text_area :description
-                  .clear
-                .form-group.text-center
-                  =f.radio_button :votes, "support"
-                  =label_tag 'Support', nil, class: 'support vote__selector'
-                  =f.radio_button :votes, "oppose"
-                  =label_tag 'Oppose', nil, class: 'oppose vote__selector'
-                %hr
+                %div
+                  .form-group.text-center
+                    = f.label "Attach Your File"
+                    %br
+                    =f.file_field :content, {accept: "video/*;capture=camcorder"}
+                  #title-description__container
+                    #title-input__container
+                      .form-group
+                        = f.label "Enter a Title"
+                      .form-group
+                        =f.text_field :title
+                    #description-input__container
+                      .form-group
+                        = f.label "Enter a Description"
+                      .form-group
+                        =f.text_area :description
+                    .clear
+                  .form-group.text-center.votes
+                    =f.radio_button :votes, "support"
+                    =label_tag 'Support', nil, class: 'support vote__selector'
+                    =f.radio_button :votes, "oppose"
+                    =label_tag 'Oppose', nil, class: 'oppose vote__selector'
                 .form-group
                   %p#upload-modal__errors.error.text-center
                 .form-group.text-center

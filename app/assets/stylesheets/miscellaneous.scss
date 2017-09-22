@@ -136,14 +136,6 @@
       margin: 0px auto;
     }
 
-    input[type="radio"]{
-        margin: 0;
-        padding: 0;
-        -webkit-appearance: none;
-           -moz-appearance: none;
-                appearance: none;
-    }
-
     #category-select__container, #title-input__container{
       float:left;
     }
@@ -152,8 +144,29 @@
       float:right;
     }
 
+    #second-upload__step > div:first-child {
+      padding-top: 15px;
+      border-top: 1px solid #eeeeee;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #eeeeee;
+    }
+
     .support {background-image:url('Thumb up selected.png');}
     .oppose {background-image:url('Thumb down selected.png');}
+
+    input[type="radio"]{
+      margin: 6px;
+      padding: 5px;
+      cursor: pointer;
+      z-index: 9999;
+      position: absolute;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+    }
+
+    input[type="radio"]:focus {outline:none;} 
+    input[type="radio"]::-moz-focus-inner {border:0;}
 
     input[type="radio"]:active +label{opacity: .9;}
     input[type="radio"]:checked +label{

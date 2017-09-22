@@ -1,5 +1,5 @@
-var issues = [];
-var categories = [];
+issues = [];
+categories = [];
 
 $(function() {
   // Load categories and populate them
@@ -29,22 +29,6 @@ $(function() {
 
   $('#issue-navigator').on('mouseleave', (e) => {
     $(e.currentTarget).toggle();
-  });
-
-  $('#uploadModal #category_id').on('change', (e) => {
-    $('#issue-select__container').show();
-    const issueSelect = $('#video_issue_id');
-    issueSelect.html(""); // Reset issue container options
-    issueSelect.append($("<option />").val(-1).text(""));
-    for (let i = 0, len = issues.length; i < len; i++) {
-      if (issues[i].category_id === parseInt($(e.currentTarget).val())) {
-        issueSelect.append($("<option />").val(issues[i].id).text(issues[i].name));
-      }
-    }
-  });
-
-  $('#uploadModal #video_issue_id').on('change', (e) => {
-    $('#second-upload__step').show();
   });
 });
 

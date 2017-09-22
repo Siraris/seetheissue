@@ -1,8 +1,9 @@
 .carousel {
-  .carousel__category {
+  .carousel__category, .carousel__issue {
     position: relative;
     width: 50%;
     h3 {
+      color: #fff;
       position: absolute;
       top: 0px;
       left: 0px;
@@ -14,4 +15,9 @@
       height: 100%
     }
   }
+}
+
+#categories-back__btn {
+  font-size: 1.5em;
+  color: $sti-darkblue;
 }

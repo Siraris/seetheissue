@@ -1,0 +1,22 @@
+#issueSubmission.modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "issueSubmissionLabel"}}
+  .modal-dialog.modal-md{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
+          %span{aria: { hidden: "true"}} &times;
+        %h4.modal-title#uploadModalLabel="Share An Issue Important To You"
+      .br-modal__scroll
+        .modal-body
+          =form_for IssueSubmission.new() do |f|
+            .form-group
+              = f.label "What is the issue you care about?"
+            .form-group
+              = f.text_field :issue
+            .form-group
+              = f.label "Why is this issue important to you?"
+            .form-group
+              = f.text_area :details, class: 'form-control'
+            - if user_signed_in?
+              =f.hidden_field :user_id, value: current_user.id
+            .form-group.text-center
+              =f.submit "Submit", class: "btn btn-lg byb", remote: true

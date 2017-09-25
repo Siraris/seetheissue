@@ -95,6 +95,24 @@ body.vb-disable-scrolling {
   background: url(loading.gif) no-repeat;
 }
 
+
+.vb-prev-container, .vb-next-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 8%;
+  z-index: 10;
+}
+
+.vb-next-container {
+  right: 0;
+}
+
+.vb-prev-container {
+  left: 0;
+}
+
 .vb-nav {
   position: absolute;
   top: 0;
@@ -119,8 +137,8 @@ body.vb-disable-scrolling {
   display: block;
 }
 
-.vb-nav a.vb-prev {
-  width: 34%;
+.vb-prev-container a.vb-prev {
+  width: 100%; // 34% old
   left: 0;
   float: left;
   background: url(prev.png) left 48% no-repeat;
@@ -132,13 +150,13 @@ body.vb-disable-scrolling {
   transition: opacity 0.6s;
 }
 
-.vb-nav a.vb-prev:hover {
+.vb-prev-container a.vb-prev:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
 
-.vb-nav a.vb-next {
-  width: 64%;
+.vb-next-container a.vb-next {
+  width: 100%; // 64% old
   right: 0;
   float: right;
   background: url(next.png) right 48% no-repeat;
@@ -150,7 +168,7 @@ body.vb-disable-scrolling {
   transition: opacity 0.6s;
 }
 
-.vb-nav a.vb-next:hover {
+.vb-next-container a.vb-next:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }

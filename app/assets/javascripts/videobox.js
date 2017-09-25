@@ -45,8 +45,8 @@
     fadeDuration: 600,
     fitImagesInViewport: true,
     videoFadeDuration: 600,
-    // maxWidth: 800,
-    // maxHeight: 600,
+    maxWidth: 800,
+    maxHeight: 600,
     positionFromTop: 50,
     resizeDuration: 700,
     showImageNumberLabel: true,
@@ -99,7 +99,7 @@
   // Attach event handlers to the new DOM elements. click click click
   Videobox.prototype.build = function() {
     const self = this;
-    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-outerContainer"><div class="vb-container"><div class="vb-video" /><div class="vb-nav"><a class="vb-prev" href="" ></a><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div></div>').appendTo($('body'));
 
     // Cache jQuery objects
     this.$videobox       = $('#videobox');
@@ -275,10 +275,15 @@
 
     this.$outerContainer.addClass('animating');
 
-    //$video.append(`<script src="//content.jwplatform.com/players/${self.album[0].media_id}-z1GU7fGd.js"></script>`);
-    $video.html(`<iframe src="//content.jwplatform.com/players/${this.album[this.currentVideoIndex].media_id}-z1GU7fGd.html" frameborder="0" allowfullscreen>`);
-    this.sizeContainer($video.children().width() + 50, $video.children().height() + 50);
-    $video.show();
+    jwplayer("vb-video").setup({
+      file: `https://content.jwplatform.com/videos/${this.album[this.currentVideoIndex].media_id}.mp4`
+    })
+
+    jwplayer().on("ready", () =>{
+      this.sizeContainer($video.children().width() + 50, $video.children().height() + 50);
+      $video.show();
+    });
+
     if (this.album.length - this.currentVideoIndex == 2)
     {
       this.getVideos();
@@ -464,14 +469,14 @@
 
   // Preload previous and next images in set.
   Videobox.prototype.preloadNeighboringImages = function() {
-    if (this.album.length > this.currentVideoIndex + 1) {
-      var preloadNext = new Image();
-      preloadNext.src = this.album[this.currentVideoIndex + 1].link;
-    }
-    if (this.currentVideoIndex > 0) {
-      var preloadPrev = new Image();
-      preloadPrev.src = this.album[this.currentVideoIndex - 1].link;
-    }
+    // if (this.album.length > this.currentVideoIndex + 1) {
+    //   var preloadNext = new Image();
+    //   preloadNext.src = this.album[this.currentVideoIndex + 1].link;
+    // }
+    // if (this.currentVideoIndex > 0) {
+    //   var preloadPrev = new Image();
+    //   preloadPrev.src = this.album[this.currentVideoIndex - 1].link;
+    // }
   };
 
   Videobox.prototype.enableKeyboardNav = function() {

@@ -35,6 +35,8 @@
     = stylesheet_link_tag "application", "https://fonts.googleapis.com/css?family=Lato"
     = stylesheet_link_tag "application", "https://fonts.googleapis.com/css?family=Oswald"
 
+    = javascript_include_tag "//content.jwplatform.com/libraries/z1GU7fGd.js"
+
   %body{ class: "#{controller.controller_path} #{controller.action_name}" }
     - #Facebook JS SDK
     = render 'facebook_jssdk'
@@ -46,6 +48,7 @@
     = render 'modals/signup'
     = render 'modals/login'
     = render 'modals/upload_modal'
+    = render 'modals/submit_issue_modal'
     = yield
     = render 'footer'
 

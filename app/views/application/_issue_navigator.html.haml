@@ -1,4 +1,6 @@
 #issue-navigator{style: "display:none;"}
+  - if user_signed_in?
+    %p="Don't see an issue important to you? #{link_to "Share it with us", "#", {data:{"toggle":"modal", "target":"#issueSubmission"}}}".html_safe
   #issue-content
     %h1="Categories"
     #categories

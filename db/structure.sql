@@ -33,6 +33,26 @@ CREATE TABLE `categories` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `issue_submissions`
+--
+
+DROP TABLE IF EXISTS `issue_submissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `issue_submissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `issue` varchar(100) DEFAULT NULL,
+  `details` text,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_issue_submissions_on_user_id` (`user_id`),
+  CONSTRAINT `fk_rails_bd1ceb91aa` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `issues`
 --
 
@@ -150,7 +170,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-22 16:49:02
+-- Dump completed on 2017-09-22 17:19:43
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -172,4 +192,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170918211112');
 INSERT INTO schema_migrations (version) VALUES ('20170920201213');
 
 INSERT INTO schema_migrations (version) VALUES ('20170922214838');
+
+INSERT INTO schema_migrations (version) VALUES ('20170922220924');
 

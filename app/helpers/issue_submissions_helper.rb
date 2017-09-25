@@ -1,0 +1,2 @@
+module IssueSubmissionsHelper
+end

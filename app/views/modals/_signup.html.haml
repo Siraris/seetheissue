@@ -11,6 +11,11 @@
             class: 'br-form' do |f|
             .alert.alert-danger.auth__modal__errors
             .form-group
+              = f.label :username, class: 'sr-only'
+              = f.text_field :username,
+                placeholder: User.human_attribute_name(:username),
+                required: true,
+                class: 'form-control input-lg'
             .form-group
               = f.label :email, class: 'sr-only'
               = f.email_field :email,

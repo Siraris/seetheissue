@@ -13,8 +13,10 @@ Rails.application.routes.draw do
 
   resources :videos do
     collection do
-      get :list
+      get 'list/:issue_id' => :list
       get :plays
+      post :watched
+      post :completed
     end
   end
   resources :categories

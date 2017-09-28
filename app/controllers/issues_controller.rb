@@ -9,6 +9,8 @@ class IssuesController < ApplicationController
     @issue = Issue.where(id: params[:id]).first
     @videos = Video.where(issue_id: params[:id])
     @issue_video_count = Video.where(issue_id: params[:id]).count('id')
+    @for_votes = @issue.votes.where(vote: 1).count('id')
+    @against_votes = @issue.votes.where(vote:0).count('id')
   end
 
   def issue_params

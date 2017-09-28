@@ -22,7 +22,7 @@
             = link_to "sign out", destroy_user_session_path, method: :delete
         - else
           %li
-            = link_to "Login", "#", data: {toggle: 'modal', target: '#signupModal'}
+            = link_to "Login", "#", data: {toggle: 'modal', target: '#loginModal'}
       .nav.navbar-nav.navbar-right
         %span=t('.cta_html')
         =render 'byb', text: t('.upload_video')

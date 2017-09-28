@@ -1,0 +1,9 @@
+- jwUrl = "http://content.jwplatform.com/thumbs/"
+- sizes = {small: "360", medium: "480", large: "720"}
+- vid_class = (videos.count > 8) ? "count_8" : "count_#{videos.count}"
+- if videos.count > 6
+  .issue-video__montage{class: vid_class}
+    .montage__container
+      - videos[0..8].each do |video|
+        =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "montage__small")
+      %h1=title

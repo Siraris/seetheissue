@@ -3,11 +3,22 @@
   .row
     .col-md-12
       =form_for current_user do |f|
-        .profile__row
-          %h3=t('.username')
-          %h3.blue=current_user.email
-        .profile__row
-          %h3=t('.name')
+        %table{width: "100%"}
+          %tr.profile__row
+            %td
+              %h3=t('.username')
+              %h3.lightblue=current_user.username
+              =f.text_field :username, style: "display:none;", id: "user_edit_username"
+            %td
+              %button{class: "byb btn edit", data: {button: "#user_edit_username"}}="Edit"
+          %tr.profile__row
+            %td
+              %h3=t('.email')
+              %h3.lightblue=current_user.email
+              =f.text_field :email, style: 'display:none', id: "user_edit_email"
+            %td
+              %button{class: "byb btn edit", data: {button: "#user_edit_email"}}="Edit"
+        =f.submit "Update Profile", class: "byb btn"
   .row
     .col-md-12
       = render 'videos/video_carousel', videos: @user.videos, slicktrabutes: video_slicktrabutes, title: "Your Videos"

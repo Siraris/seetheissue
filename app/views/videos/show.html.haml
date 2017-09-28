@@ -2,31 +2,30 @@
 
 #video-hero{style: "padding: 45px 0px 90px 0px; background-color: #000000;"}
   .video-container{style: "width: 800px; height: 450px; margin: 0px auto;"}
-    =render 'videos/inline_video', video_id: @videos.first.media_id
-#issue-block__container.container-fluid
+    =render 'videos/inline_video', video_id: @video.media_id
+#video-individual__container.container-fluid
   .row
     .col-md-6.col-md-offset-2
-      %h1=@issue.name
-      %p=@issue.description
-    .col-md-2
-      %h2="FOR"
-    .col-md-2
-      %h2="AGAINST"
-  .row
-    .col-md-8
-    .col-md-2
-      %h2="Total videos for this issue"
-      %p=@issue_video_count
-    .col-md-2
-      %h2="Share this issue"
+      - if @video.title?
+        %h1=@video.title
+      - else
+        %h1="A video about #{@issue.name}."
+      - if @video.description?
+        %p=@video.description
+    .col-md-4
+      .opinion
+        - if @video.vote.vote == 1
+          =image_tag("Thumb up.png")
+          %h3="I support #{@issue.name}"
+        - if @video.vote.vote == 0
+          =image_tag("Thumb down.png")
+          %h3="I oppose #{@issue.name}"
+      %p="Total Views"
+      %h1=@video.statistics.inject(0){|sum,v| sum + v.watched }
       =render 'share_buttons'
 #issue-related__videos.container-fluid
-  %h2="More Videos About #{@issue.name}"
-  - video_count = @issue_video_count / 20
-  // Set length to max 2 so we only get 3 rows... perhaps we should do more, or perhaps we should have a nice grid below?
-  - length = video_count > 3 ? 2 : video_count
-  - (0..length).each do |i|
-    = render 'videos/video_carousel', videos: @videos.slice(i * 20, 20), slicktrabutes: video_slicktrabutes, title: ""
+  %h3.lightblue="More Videos About #{@issue.name}"
+  = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, title: "", issue: @issue
 #how-it-works__container.container-fluid
   .row
     %h3.lightblue="How It Works"

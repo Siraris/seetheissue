@@ -100,7 +100,7 @@ body.vb-disable-scrolling {
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
+  height: calc(100% - 38px);
   width: 8%;
   z-index: 10;
 }

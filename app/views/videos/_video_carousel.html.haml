@@ -1,14 +1,29 @@
+- title = (title.present?) ? title : ""
 - jwUrl = "http://content.jwplatform.com/thumbs/"
 - sizes = {small: "186", medium: "480", large: "720"}
 
 .carousel__container
-  %p=title
+  .video_data.hidden=@videos.to_json
+  - if local_assigns[:issue].present? && title != "hide"
+    %p=issue.name
+  - elsif title != "hide"
+    %p=title
   .carousel{data: {slick: slicktrabutes}}
-    - videos.each do |video|
-      .carousel__category{data: {id: video.media_id, videobox:"video"}}
+    - videos.each_with_index do |video, index|
+      .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
+        - days = (Date.today - video.created_at.to_date).to_i
+        - time = (days / 7 <= 1) ? "#{days} days ago" : "#{days / 7} weeks ago"
+        - if (days < 6)
+          = render "videos/corner_banner", text: "NEW"
+
         =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:small]}.jpg", width: sizes[:small])
-        .text
-          - days = (Date.today - video.created_at.to_date).to_i
-          - time = (days / 7 <= 1) ? "#{days} days ago" : "#{days / 7} weeks ago"
-          %p="#{video.views} views / #{time}"
+        .details
+          .vote
+            - if video.vote && video.vote.vote == 1
+              =image_tag("Thumb up.png")
+              %p="Support"
+            - if video.vote && video.vote.vote == 0
+              =image_tag("Thumb down.png")
+              %p="Oppose"
+          %p="#{video.statistics.inject(0){|sum,v| sum + v.watched }} views / #{time}"
           %p="Hello This is going to be some cool stuff"

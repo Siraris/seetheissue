@@ -22,4 +22,10 @@ $(() => {
   $('#uploadModal #video_issue_id').on('change', (e) => {
     $('#second-upload__step').show();
   });
+
+  $('#uploadModal').on('hidden.bs.modal', () => {
+    document.getElementById('new_video').reset()
+    $('#second-upload__step').hide();
+    $('#issue-select__container').hide();
+  });
 });

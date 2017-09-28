@@ -8,4 +8,12 @@ $(function() {
       error_node.html(response.error_message);
     }
   });
+
+  $('.btn.edit').on('click', (e) => {
+    const button = $($(e.currentTarget).data('button'));
+    button.toggle();
+    button.parent().children('.lightblue').toggle();
+    e.preventDefault();
+    return false;
+  });
 });

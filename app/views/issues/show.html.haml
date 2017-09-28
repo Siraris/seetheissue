@@ -1,30 +1,28 @@
-- video_slicktrabutes = '{"slidesToShow": 5, "slidesToScroll": 1, "rows": 1, "infinite": false, "responsive": [{"breakpoint": 1024, "settings": { "slidesToShow": 3, "slidesToScroll": 3, "infinite": true } }, { "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } }, { "breakpoint": 480, "settings": { "slidesToShow": 2, "slidesToScroll": 1 } }] }'
+- video_slicktrabutes = '{"slidesToShow": 5, "slidesToScroll": 1, "rows": 3, "infinite": false, "responsive": [{"breakpoint": 1024, "settings": { "slidesToShow": 3, "slidesToScroll": 3, "infinite": true } }, { "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } }, { "breakpoint": 480, "settings": { "slidesToShow": 2, "slidesToScroll": 1 } }] }'
 
 #video-hero{style: "padding: 45px 0px 90px 0px; background-color: #000000;"}
-  .video-container{style: "width: 800px; height: 450px; margin: 0px auto;"}
-    =render 'videos/inline_video', video_id: @videos.first.media_id
+  .video-container
+    =render 'videos/issue_video_montage', videos: @videos, title: @issue.name
 #issue-block__container.container-fluid
   .row
     .col-md-6.col-md-offset-1
-      %h1=@issue.name
+      %h3.lightblue="Whats this all about?"
       %p=@issue.description
     .col-md-2
-      %h2="FOR"
+      %p="For this issue"
+      %h1=@for_votes
     .col-md-2
-      %h2="AGAINST"
+      %p="Against this issue"
+      %h1=@against_votes
     .col-md-2
-      %h2="Total videos for this issue"
-      %p=@issue_video_count
+      %p="Total videos for this issue"
+      %h1=@issue_video_count
     .col-md-2
-      %h2="Share this issue"
+      %p="Share this issue"
       =render 'share_buttons'
 #issue-related__videos.container-fluid
   %h3.lightblue="More Videos About #{@issue.name}"
-  - video_count = @issue_video_count / 20
-  // Set length to max 2 so we only get 3 rows... perhaps we should do more, or perhaps we should have a nice grid below?
-  - length = video_count > 3 ? 2 : video_count
-  - (0..length).each do |i|
-    = render 'videos/video_carousel', videos: @videos.slice(i * 20, 20), slicktrabutes: video_slicktrabutes, title: ""
+  = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issue, title: "hide"
 #how-it-works__container.container-fluid
   .row
     %h3.lightblue="How It Works"

@@ -49,7 +49,7 @@ CREATE TABLE `issue_submissions` (
   PRIMARY KEY (`id`),
   KEY `index_issue_submissions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_bd1ceb91aa` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,6 +85,30 @@ CREATE TABLE `schema_migrations` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `statistics`
+--
+
+DROP TABLE IF EXISTS `statistics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `statistics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `video_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `watched` int(11) DEFAULT NULL,
+  `completed` int(11) DEFAULT NULL,
+  `shared` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_statistics_on_video_id` (`video_id`),
+  KEY `index_statistics_on_user_id` (`user_id`),
+  CONSTRAINT `fk_rails_42a876aeed` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `fk_rails_d1884c5421` FOREIGN KEY (`video_id`) REFERENCES `videos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `users`
 --
 
@@ -111,6 +135,7 @@ CREATE TABLE `users` (
   `unconfirmed_email` varchar(255) DEFAULT NULL,
   `bio` varchar(255) NOT NULL DEFAULT '',
   `photo` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
@@ -136,7 +161,7 @@ CREATE TABLE `videos` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_videos_on_user_id_and_issue_id` (`user_id`,`issue_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,12 +178,14 @@ CREATE TABLE `votes` (
   `vote` smallint(6) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `video_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_votes_on_issue_id` (`issue_id`),
   KEY `index_votes_on_user_id` (`user_id`),
+  KEY `index_votes_on_video_id` (`video_id`),
   CONSTRAINT `fk_rails_c9b3bef597` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_rails_f986c14a92` FOREIGN KEY (`issue_id`) REFERENCES `issues` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -170,7 +197,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-22 17:19:43
+-- Dump completed on 2017-09-27 21:48:54
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -194,4 +221,10 @@ INSERT INTO schema_migrations (version) VALUES ('20170920201213');
 INSERT INTO schema_migrations (version) VALUES ('20170922214838');
 
 INSERT INTO schema_migrations (version) VALUES ('20170922220924');
+
+INSERT INTO schema_migrations (version) VALUES ('20170925195217');
+
+INSERT INTO schema_migrations (version) VALUES ('20170927234619');
+
+INSERT INTO schema_migrations (version) VALUES ('20170928024543');
 

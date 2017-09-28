@@ -1,3 +1,23 @@
 // Place all the styles related to the Issues controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#issue-block__container {
+  .col-md-2 {
+    h1 {
+      margin: 0;
+    }
+    p {
+      font-family:  "Open Sans";
+      margin-bottom: 15px;
+    }
+  }
+
+  h3.lightblue {
+    margin-top: 0;
+  }
+
+  .col-md-2:nth-child(4), .col-md-2:nth-child(5) {
+    margin-top: 40px;
+  }
+}

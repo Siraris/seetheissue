@@ -2,7 +2,7 @@
   .modal-dialog.modal-md{role: "document"}
     .modal-content
       .modal-header
-        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button", onClick:"document.getElementById('new_video').reset()"}
+        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
           %span{aria: { hidden: "true"}} &times;
         %h4.modal-title#uploadModalLabel="What's On Your Mind?"
       .br-modal__scroll
@@ -33,17 +33,17 @@
                       .form-group
                         = f.label "Enter a Title"
                       .form-group
-                        =f.text_field :title
+                        =f.text_field :title, class: "form-control input-lg"
                     #description-input__container
                       .form-group
                         = f.label "Enter a Description"
                       .form-group
-                        =f.text_area :description
+                        =f.text_area :description, class: "form-control input-lg"
                     .clear
                   .form-group.text-center.votes
-                    =f.radio_button :votes, "support"
+                    =f.radio_button :vote, 1
                     =label_tag 'Support', nil, class: 'support vote__selector'
-                    =f.radio_button :votes, "oppose"
+                    =f.radio_button :vote, 0
                     =label_tag 'Oppose', nil, class: 'oppose vote__selector'
                 .form-group
                   %p#upload-modal__errors.error.text-center

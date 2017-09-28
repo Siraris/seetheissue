@@ -87,10 +87,11 @@
     $('body').on('click', 'a[rel^=videobox], div[rel^=videobox], a[data-videobox], div[data-videobox]', function(event) {
       // Retrieve videos, which is async. When it's done, we'll do something
       // in this case, get the popup going
-      const promise = self.getVideos();
-      promise.done(() => {
-        self.start($(event.currentTarget));
-      });
+      self.album = JSON.parse($(event.currentTarget)
+        .parents('.carousel__container')
+        .children('.video_data')
+        .html());
+      self.start($(event.currentTarget));
       return false;
     });
   };
@@ -99,7 +100,7 @@
   // Attach event handlers to the new DOM elements. click click click
   Videobox.prototype.build = function() {
     const self = this;
-    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div></div>').appendTo($('body'));
 
     // Cache jQuery objects
     this.$videobox       = $('#videobox');
@@ -148,7 +149,7 @@
       if (self.currentVideoIndex === 0) {
         self.changeVideo(self.album.length - 1);
       } else {
-        self.changeVideo(self.currentVideoIndex - 1);
+        self.changeVideo(parseInt(self.currentVideoIndex) - 1);
       }
       return false;
     });
@@ -157,7 +158,7 @@
       if (self.currentVideoIndex === self.album.length - 1) {
         self.changeVideo(0);
       } else {
-        self.changeVideo(self.currentVideoIndex + 1);
+        self.changeVideo(parseInt(self.currentVideoIndex) + 1);
       }
       return false;
     });
@@ -190,6 +191,7 @@
 
     this.$videobox.find('.vb-loader, .vb-close').on('click', function() {
       self.end();
+      jwplayer().remove();
       return false;
     });
   };
@@ -207,7 +209,9 @@
 
     this.sizeOverlay();
 
-    let videoNumber = 0;
+    // Set the video number to the index in the array
+    let videoNumber = $link.attr('data-index');
+    console.log($link);
 
     function addToAlbum($link) {
       self.album.push({
@@ -260,6 +264,38 @@
     this.changeVideo(videoNumber);
   };
 
+  /*
+    Record that a user has started watching a video
+
+  */
+  Videobox.prototype.recordWatch = function(video_id) {
+    $.ajax({
+      url: "/videos/watched",
+      type: "POST",
+      data: {
+        "video_id": video_id
+      }
+    })
+    .done((data, status, xhr) => {
+    });
+  }
+
+  /*
+    Record that a user has finished watching a video
+
+  */
+  Videobox.prototype.recordComplete = function(video_id) {
+    $.ajax({
+      url: "/videos/completed",
+      type: "POST",
+      data: {
+        "video_id": video_id
+      }
+    })
+    .done((data, status, xhr) => {
+    });
+  }
+
   // Hide most UI elements in preparation for the animated resizing of the videobox.
   Videobox.prototype.changeVideo = function(videoNumber) {
     const self = this;
@@ -280,12 +316,19 @@
     })
 
     jwplayer().on("ready", () =>{
-      this.sizeContainer($video.children().width() + 50, $video.children().height() + 50);
+      this.sizeContainer($video + 50, $video + 50);
       $video.show();
     });
 
-    if (this.album.length - this.currentVideoIndex == 2)
-    {
+    jwplayer().on("play", () => {
+      this.recordWatch(self.album[self.currentVideoIndex].id);
+    });
+
+    jwplayer().on("complete", () => {
+      this.recordComplete(self.album[self.currentVideoIndex].id);
+    });
+
+    if (this.album.length - this.currentVideoIndex == 2) {
       this.getVideos();
     }
 
@@ -498,13 +541,13 @@
       this.end();
     } else if (key === 'p' || keycode === KEYCODE_LEFTARROW) {
       if (this.currentVideoIndex !== 0) {
-        this.changeVideo(this.currentVideoIndex - 1);
+        this.changeVideo(parseInt(this.currentVideoIndex) - 1);
       } else if (this.options.wrapAround && this.album.length > 1) {
         this.changeVideo(this.album.length - 1);
       }
     } else if (key === 'n' || keycode === KEYCODE_RIGHTARROW) {
       if (this.currentVideoIndex !== this.album.length - 1) {
-        this.changeVideo(this.currentVideoIndex + 1);
+        this.changeVideo(parseInt(this.currentVideoIndex) + 1);
       } else if (this.options.wrapAround && this.album.length > 1) {
         this.changeVideo(0);
       }
@@ -526,14 +569,23 @@
     this.album = [];
   };
 
-  Videobox.prototype.getVideos = function() {
+  /*
+    Deprecated but might be used later: 
+    Retrieves a list of videos for the current issue
+
+    issue_id: Id of the issue stored on the carousel__container
+
+    returns a list of video objects
+
+   */
+  Videobox.prototype.getVideos = function(videos) {
     const self = this;
     const deferred = $.Deferred();
     $.ajax({
-      url: "/videos/list"
+      url: `/videos/list/${issue_id}`
     })
     .done((data, status, xhr) => {
-      self.album = _.concat(self.album, JSON.parse(data));
+      self.album = _.concat(self.album, data);
       deferred.resolve();
     });
 

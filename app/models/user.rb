@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
 
   has_many :videos
   has_many :votes
+  has_many :reports
 end

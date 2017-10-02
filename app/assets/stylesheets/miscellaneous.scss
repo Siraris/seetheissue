@@ -119,6 +119,13 @@
   }
 }
 
+#reportModal {
+  z-index: 99999;
+  .modal-content {
+    background-color: $sti-darkblue;
+  }
+}
+
 
 #uploadModal {
   .modal-header {

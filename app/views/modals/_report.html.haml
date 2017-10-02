@@ -1,0 +1,27 @@
+#reportModal.modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "reportModalLabel"}}
+  .modal-dialog.modal-md{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
+          %span{aria: { hidden: "true"}} &times;
+        %h4.modal-title#reportModalLabel="Report an issue with this video"
+      .br-modal__scroll
+        .modal-body
+          =form_for Report.new(), remote:true do |f|
+            .form-group
+              = f.label "What's the issue with this video?"
+              //= select_tag :comment, options_for_select(["offensive", "off_topic", "hate_speech"], ["Offensive", "Off Topic", "Hate Speech"]), include_blank: true
+            .form-group
+              =f.text_field :category
+            .form-group
+              = f.label "Care to give any more details?"
+            .form-group
+              = f.text_area :comment, class: 'form-control input-lg'
+            - if user_signed_in?
+              =f.hidden_field :user_id, value: current_user.id
+            =f.hidden_field :video_id
+            .form-group.text-center
+              =f.submit "Submit", class: "btn btn-lg byb", remote: true
+            .form-group
+              %p#report-modal__errors.error.text-center
+        .modal-body.success.text-center{style: "display:none"}

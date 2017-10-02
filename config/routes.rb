@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :issues
   resources :issue_submissions
+  resources :reports
 
   devise_for :users, controllers: {
     confirmations: "users/confirmations",

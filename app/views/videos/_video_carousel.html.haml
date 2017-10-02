@@ -25,5 +25,10 @@
             - if video.vote && video.vote.vote == 0
               =image_tag("Thumb down.png")
               %p="Oppose"
+          - if user_signed_in? && controller_name == "users" && action_name == "show"
+            .delete
+              %a.delete_video{href:"#", title: "Delete Your Video", data: {video: video.id}}
+                =image_tag("delete_icon.png")
+          .clear
           %p="#{video.statistics.inject(0){|sum,v| sum + v.watched }} views / #{time}"
           %p="Hello This is going to be some cool stuff"

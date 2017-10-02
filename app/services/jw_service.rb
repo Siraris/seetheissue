@@ -27,7 +27,7 @@ class JWService
         JSON.parse(response.body, object_class: OpenStruct)
       end
     rescue Exception => e
-      puts e.message
+      puts "Error encountered creating video #{e.message}"
     end
   end
 
@@ -35,10 +35,17 @@ class JWService
   def plays(page = 0)
     video_url = "https://#{@base_uriv2}/sites/#{ENV.fetch('JW_API_KEY')}/analytics/queries/"
     begin
-      response = RestClient.post(video_url, {start_date: "2017-01-01", end_date: "2017-09-15",
-          dimensions: ["media_id"], page: page, metrics: [{operation: "sum", field: "plays"}], sort: [{field: "plays", order: "DESCENDING"}]
-        }.to_json, :authorization => ENV.fetch('JW_API_REPORTING_SECRET'), :content_type => "application/json"
-        )
+      response = RestClient.post(video_url, {
+          start_date: "2017-01-01",
+          end_date: "2017-09-15",
+          dimensions: ["media_id"],
+          page: page,
+          metrics: [{operation: "sum", field: "plays"}],
+          sort: [{field: "plays", order: "DESCENDING"}]
+        }.to_json,
+        :authorization => ENV.fetch('JW_API_REPORTING_SECRET'),
+        :content_type => "application/json"
+      )
 
       if (response.code == 200)
         JSON.parse(response.body, object_class: OpenStruct)
@@ -61,6 +68,25 @@ class JWService
       return body.media.key
     rescue Exception => e
       puts e.response
+    end
+  end
+
+  def destroy(media_id)
+    options = {
+        params: {
+          video_key: media_id
+        }
+    }
+    options = options[:params].merge!(api_settings(options[:params]))
+
+    begin
+      response = RestClient.post("https://#{@base_uriv1}/videos/delete", options)
+      if (response.code == 200)
+        return true
+      end
+    rescue Exception => e
+      puts "Error encountered deleting video: #{e.message}"
+      return false
     end
   end
 

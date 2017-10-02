@@ -100,7 +100,7 @@
   // Attach event handlers to the new DOM elements. click click click
   Videobox.prototype.build = function() {
     const self = this;
-    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-reportContainer"><a class="vb-report" data-video="">Report Video</a></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div></div>').appendTo($('body'));
 
     // Cache jQuery objects
     this.$videobox       = $('#videobox');
@@ -188,11 +188,15 @@
       }
     });
 
-
     this.$videobox.find('.vb-loader, .vb-close').on('click', function() {
       self.end();
       jwplayer().remove();
       return false;
+    });
+
+    $('.vb-report').on('click', (e) => {
+      $('#report_video_id').val(this.album[this.currentVideoIndex].id);
+      $('#reportModal').modal('show');
     });
   };
 
@@ -211,7 +215,6 @@
 
     // Set the video number to the index in the array
     let videoNumber = $link.attr('data-index');
-    console.log($link);
 
     function addToAlbum($link) {
       self.album.push({
@@ -446,6 +449,8 @@
       document.createEvent('TouchEvent');
       alwaysShowNav = (this.options.alwaysShowNavOnTouchDevices) ? true : false;
     } catch (e) {}
+
+    this.$videobox.find('.vb-report').data('video', this.album[this.currentVideoIndex].id);
 
     this.$videobox.find('.vb-nav').show();
 

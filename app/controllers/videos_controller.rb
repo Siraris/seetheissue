@@ -18,7 +18,8 @@ class VideosController < ApplicationController
     })
 
     unless result.empty?
-      render(json: { error_message: "Duplicate video for this issue, you can delete it from your profile to upload a new video.", error_code: "duplicate_video" },
+      render(json: { error_message: "Duplicate video for this issue, you can delete it from your profile to upload a new video.",
+        error_code: "duplicate_video" },
         status: :unprocessable_entity
       ) and return
     end
@@ -40,6 +41,17 @@ class VideosController < ApplicationController
     @video = Video.where(id: params[:id]).first
     @issue = Issue.where(id: @video.issue_id).first
     @videos = Video.where(issue_id: @issue.id)
+  end
+
+  def destroy
+    if (user_signed_in?)
+      @video = Video.where(id: params[:id]).first
+      @video.destroy if (@video.user_id == current_user.id)
+
+      message = (@video.destroyed?) ? "deleted" : "failed"
+
+      render(json: {message: message}) and return
+    end
   end
 
   def oauth

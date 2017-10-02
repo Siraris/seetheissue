@@ -72,6 +72,29 @@ CREATE TABLE `issues` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `reports`
+--
+
+DROP TABLE IF EXISTS `reports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reports` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `video_id` int(11) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_reports_on_user_id` (`user_id`),
+  KEY `index_reports_on_video_id` (`video_id`),
+  CONSTRAINT `fk_rails_52d5a96386` FOREIGN KEY (`video_id`) REFERENCES `videos` (`id`),
+  CONSTRAINT `fk_rails_c7699d537d` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `schema_migrations`
 --
 
@@ -139,7 +162,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +220,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-27 21:48:54
+-- Dump completed on 2017-10-01 19:34:26
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -227,4 +250,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170925195217');
 INSERT INTO schema_migrations (version) VALUES ('20170927234619');
 
 INSERT INTO schema_migrations (version) VALUES ('20170928024543');
+
+INSERT INTO schema_migrations (version) VALUES ('20171002002740');
 

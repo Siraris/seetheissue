@@ -92,9 +92,10 @@
 
   .carousel__category {
     .details {
-      width: 85%;
+      width: 186px;
 
       .vote {
+        float:left;
         padding: 10px 0px;
 
         img {
@@ -105,6 +106,10 @@
         p {
           display:inline-block;
         }
+      }
+      .delete {
+        margin-top: 15px;
+        float:right;
       }
 
       p:first-child {

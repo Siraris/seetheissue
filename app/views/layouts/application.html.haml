@@ -21,6 +21,8 @@
     %meta{name:"msapplication-TileColor", content:"#ffffff"}
     %meta{name:"msapplication-TileImage", content:"/ms-icon-144x144.png"}
     %meta{name:"theme-color", content:"#ffffff"}
+    - @facebook_metadata.each do |key, value|
+      %meta{property: key, content: value}
 
 
     / TODO: Add page-specific titles

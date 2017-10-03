@@ -3,7 +3,10 @@
 .video-montage
   .montage__container
     =image_tag("#{jwUrl}#{most_viewed.media_id}-#{sizes[:medium]}.jpg", class: "montage__large")
-  .montage__container
-    - around_site.each do |video|
-      =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "montage__small")
+  .montage__container.parent
+    =render('videos/flag', text: "Around The Site")
+    .video_data.hidden=@around_the_site.to_json
+    - around_site.each_with_index do |video, index|
+      =link_to "#", data: {id: video.media_id, videobox:"video", index: index} do
+        =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "montage__small")
   .clear

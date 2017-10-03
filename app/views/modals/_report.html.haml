@@ -10,9 +10,7 @@
           =form_for Report.new(), remote:true do |f|
             .form-group
               = f.label "What's the issue with this video?"
-              //= select_tag :comment, options_for_select(["offensive", "off_topic", "hate_speech"], ["Offensive", "Off Topic", "Hate Speech"]), include_blank: true
-            .form-group
-              =f.text_field :category
+              = select_tag :category, options_for_select([["Offensive", "offensive"], ["Off Topic", "off_topic"], ["Hate Speech", "hate_speech"]]), include_blank: true, class: 'form-control input-lg'
             .form-group
               = f.label "Care to give any more details?"
             .form-group

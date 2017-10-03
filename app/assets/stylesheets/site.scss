@@ -92,3 +92,36 @@ h3 {
 /*
   End How it works
  */
+
+/*
+  User mangement
+ */
+ .user-management {
+  background-color: #fff;
+  padding: 75px 0px;
+
+  h2 {
+    color:black;
+  }
+
+  .field, .actions {
+    display:inline-block;
+  }
+
+  .col-md-6 {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 30px;
+  }
+
+  .devise-links {
+    margin-top: 15px;
+    a {
+      display:inline-block;
+    }
+  }
+
+ }
+/*
+  End User mangement
+ */

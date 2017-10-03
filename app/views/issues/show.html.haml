@@ -19,7 +19,7 @@
       %h1=@issue_video_count
     .col-md-2
       %p="Share this issue"
-      =render 'share_buttons'
+      =render 'share_buttons', issue_name: @issue.name
 #issue-related__videos.container-fluid
   %h3.lightblue="More Videos About #{@issue.name}"
   = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issue, title: "hide"

@@ -3,12 +3,12 @@
 - sizes = {small: "186", medium: "480", large: "720"}
 
 .carousel__container
-  .video_data.hidden=@videos.to_json
   - if local_assigns[:issue].present? && title != "hide"
     %p=issue.name
   - elsif title != "hide"
     %p=title
-  .carousel{data: {slick: slicktrabutes}}
+  .carousel.parent{data: {slick: slicktrabutes}}
+    .video_data.hidden=@videos.to_json
     - videos.each_with_index do |video, index|
       .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
         - days = (Date.today - video.created_at.to_date).to_i

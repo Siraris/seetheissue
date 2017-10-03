@@ -4,6 +4,7 @@ class VideosController < ApplicationController
     @videos = Video.all
     @categories = Category.all
     @issues = Issue.all
+    @around_the_site = generate_around_site
   end
 
   def create
@@ -86,6 +87,20 @@ class VideosController < ApplicationController
   end
 
   private
+    def generate_around_site
+      video_count = Video.all.count
+      videos = Array.new
+
+      while videos.length < 4 do
+        random_num = Random.rand(video_count)
+        video = Video.where(id: random_num).first
+        videos.push(video) if (!videos.include?(video) and video)
+      end
+      puts videos.inspect
+
+      return videos
+
+    end
 
     def store_statistic(name)
       stat_params = {video_id: params[:video_id]}

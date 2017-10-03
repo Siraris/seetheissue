@@ -88,8 +88,8 @@
       // Retrieve videos, which is async. When it's done, we'll do something
       // in this case, get the popup going
       self.album = JSON.parse($(event.currentTarget)
-        .parents('.carousel__container')
-        .children('.video_data')
+        .parents('.parent')
+        .find('.video_data')
         .html());
       self.start($(event.currentTarget));
       return false;
@@ -206,10 +206,6 @@
     const $window = $(window);
 
     $window.on('resize', $.proxy(this.sizeOverlay, this));
-
-    $('select, object, embed').css({
-      visibility: 'hidden'
-    });
 
     this.sizeOverlay();
 

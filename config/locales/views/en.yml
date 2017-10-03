@@ -5,6 +5,8 @@ en:
     navbar:
       upload_video: Upload a video
       cta_html: Everybody has an opinion. <br />What's yours?
+    share_buttons:
+      twitter_text: "Check out what people are saying about %{issue_name} on #seetheissue"
   call_to_action:
     post_an_issue: Pick an issue. Post a video.
     everybody_opinion: Everybody has an opinion. What's yours?

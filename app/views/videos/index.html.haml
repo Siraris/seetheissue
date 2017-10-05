@@ -1,4 +1,4 @@
-- categories_slicktrabutes = '{"slidesToShow": 4, "slidesToScroll": 4, "rows": 2, "infinite": false, "responsive": [{"breakpoint": 1024, "settings": { "slidesToShow": 3, "slidesToScroll": 3, "infinite": true } }, { "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } }, { "breakpoint": 480, "settings": { "slidesToShow": 1, "slidesToScroll": 1 } }] }'
+- categories_slicktrabutes = '{"slidesToShow": 4, "slidesToScroll": 4, "rows": 2, "infinite": false, "responsive": [{"breakpoint": 1024, "settings": { "slidesToShow": 3, "slidesToScroll": 3, "infinite": true } }, { "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } }, { "breakpoint": 480, "settings": { "slidesToShow": 8, "slidesToScroll": 1 } }] }'
 - video_slicktrabutes = '{"slidesToShow": 5, "slidesToScroll": 1, "rows": 1, "infinite": false, "responsive": [{"breakpoint": 1024, "settings": { "slidesToShow": 3, "slidesToScroll": 3, "infinite": true } }, { "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } }, { "breakpoint": 480, "settings": { "slidesToShow": 2, "slidesToScroll": 1 } }] }'
 .container-fluid.hero
   .row
@@ -9,12 +9,6 @@
     .col-md-12.categories-explore.white__container
       %h3.lightblue=t('.categories')
       = render 'categories_carousel', categories: @categories, slicktrabutes: categories_slicktrabutes
-    .col-md-12
-      / = render 'video_container', videos: @videos
-      / - @videos.each do |video|
-      /   %div{style: "width: 400px; height: 270px; float:left;"}
-      /     = javascript_include_tag(video_embed_tag(video.media_id))
-      /     = render 'share_buttons'
     .col-md-12.videos-explore
       %h3.lighterblue=t('.issues')
       = render 'video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issues[0]

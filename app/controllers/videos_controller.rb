@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
 
   def index
-    @videos = Video.all
+    @videos = Video.includes(:issue)
     @categories = Category.all
     @issues = Issue.all
     @around_the_site = generate_around_site
@@ -93,10 +93,10 @@ class VideosController < ApplicationController
 
       while videos.length < 4 do
         random_num = Random.rand(video_count)
+        # ensure video still exists and hasn't been deleted
         video = Video.where(id: random_num).first
-        videos.push(video) if (!videos.include?(video) and video)
+        videos.push(video) if (video and !videos.include?(video))
       end
-      puts videos.inspect
 
       return videos
 

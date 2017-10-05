@@ -22,7 +22,7 @@
           %h3="I oppose #{@issue.name}"
       %p="Total Views"
       %h1=@video.statistics.inject(0){|sum,v| sum + v.watched }
-      =render 'share_buttons'
+      =render('share_buttons', twitter_text: t('.twitter_text', issue_name: @issue.name, url: request.original_url), facebook_text: t('.facebook_text', issue_name: @issue.name, url: request.original_url), twitter_image: "Icon_Twitter.svg", facebook_image: "Icon_FB.svg")
 #issue-related__videos.container-fluid
   %h3.lightblue="More Videos About #{@issue.name}"
   = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, title: "", issue: @issue

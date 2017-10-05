@@ -48,16 +48,10 @@
 }
 
 
-.twitter-share {
+#shareModal .share__btn {
   img {
-    width: 35px;
-  }
-}
-
-
-.facebook-share {
-  img {
-    width: 18px;
+    width: 54px;
+    margin-right: 18px;
   }
 }
 
@@ -120,6 +114,13 @@
 }
 
 #reportModal {
+  z-index: 99999;
+  .modal-content {
+    background-color: $sti-darkblue;
+  }
+}
+
+#shareModal {
   z-index: 99999;
   .modal-content {
     background-color: $sti-darkblue;

@@ -4,7 +4,7 @@
       .col-md-4.left.text-center
         =t('.copyright_html')
       .col-md-4.center.text-center
-        =render "share_buttons"
+        =render('share_buttons', twitter_text: t('.twitter_text', url: request.original_url), facebook_text: t('.facebook_text', url: request.original_url), twitter_image: "Icon_Twitter.svg", facebook_image: "Icon_FB.svg")
         .logo
           =image_tag 'logo.png', {width: "107px", height: "92px"}
       .col-md-4.right.text-center

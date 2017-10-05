@@ -1,0 +1,11 @@
+#shareModal.modal.fade{role: "dialog", tabindex: "-1", aria: { labelledby: "shareModalLabel"}}
+  .modal-dialog.modal-md{role: "document"}
+    .modal-content
+      .modal-header
+        %button.close{aria: { label: t('modals.close') }, data: { dismiss: "modal" }, type: "button"}
+          %span{aria: { hidden: "true"}} &times;
+        %h4.modal-title#reportModalLabel="Share"
+      .br-modal__scroll
+        .modal-body
+          .form-group.text-center
+            =render('share_buttons', twitter_text: "",  facebook_text: "", twitter_image: "twitter.png", facebook_image: "facebook.png")

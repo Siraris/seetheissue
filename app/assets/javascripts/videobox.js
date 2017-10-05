@@ -100,7 +100,7 @@
   // Attach event handlers to the new DOM elements. click click click
   Videobox.prototype.build = function() {
     const self = this;
-    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-reportContainer"><a class="vb-report" data-video="">Report Video</a></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div></div>').appendTo($('body'));
+    $('<div id="videoboxOverlay" class="videoboxOverlay"></div><div id="videobox" class="videobox"><div class="vb-dataContainer"><div class="vb-data"><div class="vb-details"><span class="vb-caption"></span><span class="vb-number"></span></div><div class="vb-interactContainer"><a class="vb-share" data-toggle="modal" target="#shareModal">Share This Video</a> | <a class="vb-report" data-video="">Report Video</a></div><div class="vb-closeContainer"><a class="vb-close"></a></div></div></div><div class="vb-outerContainer"><div class="vb-container"><div id="vb-video" class="vb-video" /><div class="vb-prev-container"><a class="vb-prev" href="" ></a></div><div class="vb-next-container"><a class="vb-next" href="" ></a></div><div class="vb-loader"><a class="vb-cancel"></a></div></div></div></div>').appendTo($('body'));
 
     // Cache jQuery objects
     this.$videobox       = $('#videobox');
@@ -197,6 +197,12 @@
     $('.vb-report').on('click', (e) => {
       $('#report_video_id').val(this.album[this.currentVideoIndex].id);
       $('#reportModal').modal('show');
+    });
+
+    $('.vb-share').on('click', (e) => {
+      $('#shareModal').modal('show');
+      const video = this.album[this.currentVideoIndex];
+      $('#shareModal .twitter-share').attr('href', `https://twitter.com/intent/tweet?text=See what this video has to say about ${video.issue.name} http://www.seetheissue.com/videos/${video.id}`);
     });
   };
 

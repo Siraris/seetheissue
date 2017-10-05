@@ -1,4 +1,4 @@
-= share_button class: "twitter-share", data: {source: "Twitter"}, href: URI.encode("https://twitter.com/intent/tweet?text=#{t('.twitter_text', issue_name: local_assigns[:issue_name])}") do
-  = image_tag "Icon_Twitter.svg"
-= share_button class: "facebook-share", href: "#", data: {source: "Facebook", quote: "I love seetheissue"} do
-  = image_tag "Icon_FB.svg"
+= share_button class: "twitter-share", data: {source: "Twitter"}, href: URI.encode("https://twitter.com/intent/tweet?text=#{twitter_text}") do
+  = image_tag twitter_image
+= share_button class: "facebook-share", href: "#", data: {source: "Facebook", quote: facebook_text} do
+  = image_tag facebook_image

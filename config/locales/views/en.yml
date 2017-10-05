@@ -2,11 +2,11 @@ en:
   application:
     footer:
       copyright_html: "&#169; See The Issue, LLC. All rights reserved."
+      twitter_text: "You should check out what people are saying about all the important issues going on in the world on #seetheissue %{url}"
+      facebook_text: "You should check out what people are saying about all the important issues going on in the world on #seetheissue %{url}"
     navbar:
       upload_video: Upload a video
       cta_html: Everybody has an opinion. <br />What's yours?
-    share_buttons:
-      twitter_text: "Check out what people are saying about %{issue_name} on #seetheissue"
   call_to_action:
     post_an_issue: Pick an issue. Post a video.
     everybody_opinion: Everybody has an opinion. What's yours?
@@ -25,6 +25,12 @@ en:
       sign_up_share: Sign Up To Share Your Voice
       log_in: Login
       signing_up_html: Registering
+    share:
+      twitter_text: ""
+  issues:
+    show:
+      twitter_text: "Check out what people are saying about %{issue_name} on #seetheissue %{url}"
+      facebook_text: "Check out what people are saying about %{issue_name} on #seetheissue %{url}"
   users:
     show:
       username: Username
@@ -35,3 +41,6 @@ en:
       issues: Issues
       categories: Explore Categories
       how_works: How It Works
+    show:
+      twitter_text: You should really come watch this video about %{issue_name} %{url}
+      facebook_text: You should really come watch this video about %{issue_name} %{url}

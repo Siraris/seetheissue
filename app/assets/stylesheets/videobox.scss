@@ -197,8 +197,11 @@ body.vb-disable-scrolling {
   padding: 0 4px;
   color: #ccc;
   a {
-    color: red;
     cursor:pointer;
+  }
+
+  a.vb-report {
+    color: red;
   }
 }
 

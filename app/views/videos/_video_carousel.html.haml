@@ -8,7 +8,7 @@
   - elsif title != "hide"
     %p=title
   .carousel.parent{data: {slick: slicktrabutes}}
-    .video_data.hidden=@videos.to_json
+    .video_data.hidden=@videos.to_json(:include => :issue)
     - videos.each_with_index do |video, index|
       .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
         - days = (Date.today - video.created_at.to_date).to_i

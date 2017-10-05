@@ -7,6 +7,10 @@ class Video < ActiveRecord::Base
 
   before_destroy :destroy_from_cloud
 
+  scope :with_issue, -> {
+    includes(:issue)
+  }
+
   def destroy_from_cloud
     jwService = JWService.new
     result = jwService.destroy(self.media_id)

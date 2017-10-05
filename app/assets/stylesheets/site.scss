@@ -22,12 +22,20 @@ body {
   font-family: 'Festivo LC Basic', serif;
 }
 
+.slick-prev:before, .slick-next:before { 
+    color:red !important;
+}
+
 /*
   Video index
 */
 
 .categories-explore {
-  padding: 60px;
+  padding: 60px 0px;
+
+  h3 {
+    margin-left: 118px;
+  }
 }
 
 .videos-explore {

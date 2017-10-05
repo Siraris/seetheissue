@@ -19,7 +19,7 @@
       %h1=@issue_video_count
     .col-md-2
       %p="Share this issue"
-      =render 'share_buttons', issue_name: @issue.name
+      =render('share_buttons', twitter_text: t('.twitter_text', issue_name: @issue.name, url: request.original_url), facebook_text: t('.facebook_text', issue_name: @issue.name, url: request.original_url), twitter_image: "Icon_Twitter.svg", facebook_image: "Icon_FB.svg")
 #issue-related__videos.container-fluid
   %h3.lightblue="More Videos About #{@issue.name}"
   = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issue, title: "hide"

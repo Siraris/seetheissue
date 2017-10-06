@@ -334,7 +334,7 @@
     });
 
     if (this.album.length - this.currentVideoIndex == 2) {
-      this.getVideos();
+      //this.getVideos();
     }
 
     // // When image to show is preloaded, we send the width and height to sizeContainer()

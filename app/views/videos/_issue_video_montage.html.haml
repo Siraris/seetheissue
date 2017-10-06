@@ -4,6 +4,9 @@
 - if videos.count > 6
   .issue-video__montage{class: vid_class}
     .montage__container
-      - videos[0..8].each do |video|
+      - videos[0..4].each do |video|
         =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "montage__small")
+      %span
+        - videos[4..8].each do |video|
+          =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "montage__small")
       %h1=title

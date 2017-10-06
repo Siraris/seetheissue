@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.issue-video__montage {
+  @media (max-width: $screen-xs-max) {
+    span {
+      display:none;
+    }
+  }
+}
+
 #issue-block__container {
   .col-md-2 {
     h1 {
@@ -19,5 +27,18 @@
 
   .col-md-2:nth-child(4), .col-md-2:nth-child(5) {
     margin-top: 40px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    .row {
+      padding: 40px 25px !important;
+    }
+    .col-md-2:nth-of-type(2n) {
+      float:left;
+    }
+
+    .col-md-2:nth-of-type(2n-1) {
+      float:right;
+    }
   }
 }

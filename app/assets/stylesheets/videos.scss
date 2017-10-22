@@ -108,9 +108,10 @@
 
   .carousel__category {
     cursor:pointer;
-    img:hover {
-      opacity: .8;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+    .play__button {
+      opacity: 0;
+      display:none;
     }
     .details {
       width: 186px;
@@ -159,6 +160,24 @@
         -webkit-transform: rotate(-55deg); /* Chrome, Safari, Opera */
         transform: rotate(-50deg);
       }
+    }
+  }
+
+  .carousel__category:hover {
+    .video__image {
+      opacity: .6;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      transition: 1s;
+    }
+
+    .play__button {
+      transition: opacity 1s;
+      opacity: 1;
+
+      display:block;
+      position: absolute;
+      top: 33px;
+      left: 70px;
     }
   }
 }

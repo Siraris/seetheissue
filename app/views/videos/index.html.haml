@@ -5,15 +5,14 @@
     .col-md-12.white__container
       = render 'front_video_montage', most_viewed: @videos[0], around_site: @around_the_site
     .col-md-12
-      = render 'call_to_action', title: t('call_to_action.post_an_issue'), sub_text: t('call_to_action.post_issue_text'), button_text: t('call_to_action.share_button')
+      = render 'call_to_action', title: t('call_to_action.post_an_issue'), sub_text: t('call_to_action.post_issue_text_html'), button_text: t('call_to_action.share_button')
     .col-md-12.categories-explore.white__container
       %h3.lightblue=t('.categories')
       = render 'categories_carousel', categories: @categories, slicktrabutes: categories_slicktrabutes
     .col-md-12.videos-explore
       %h3.lighterblue=t('.issues')
-      = render 'video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issues[0]
-      = render 'video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issues[1]
-      = render 'video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issues[0]
+      - @issues.reject{|issue| issue.top_issue == false}.each do |issue|
+        = render 'video_carousel', videos: @videos.select {|video| video.issue_id == issue.id}, slicktrabutes: video_slicktrabutes, issue: issue
     .col-md-12.white__container.how-it-works
       %h3.lightblue=t('.how_works')
       .col-md-4.col-md-offset-2

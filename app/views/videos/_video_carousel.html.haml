@@ -7,28 +7,32 @@
     %p=issue.name
   - elsif title != "hide"
     %p=title
-  .carousel.parent{data: {slick: slicktrabutes}}
-    .video_data.hidden=@videos.to_json(:include => :issue)
-    - videos.each_with_index do |video, index|
-      .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
-        - days = (Date.today - video.created_at.to_date).to_i
-        - time = (days / 7 <= 1) ? "#{days} days ago" : "#{days / 7} weeks ago"
-        - if (days < 6)
-          = render "videos/corner_banner", text: "NEW"
+  - if videos.length == 0
+    %h1 No videos yet for this issue
+  - else
+    .carousel.parent{data: {slick: slicktrabutes}}
+      .video_data.hidden=videos.to_json(:include => :issue)
+      - videos.each_with_index do |video, index|
+        .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
+          - days = (Date.today - video.created_at.to_date).to_i
+          - time = (days / 7 <= 1) ? "#{days} days ago" : "#{days / 7} weeks ago"
+          - if (days < 6)
+            = render "videos/corner_banner", text: "NEW"
 
-        =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:small]}.jpg", width: sizes[:small])
-        .details
-          .vote
-            - if video.vote && video.vote.vote == 1
-              =image_tag("Thumb up.png")
-              %p="Support"
-            - if video.vote && video.vote.vote == 0
-              =image_tag("Thumb down.png")
-              %p="Oppose"
-          - if user_signed_in? && controller_name == "users" && action_name == "show"
-            .delete
-              %a.delete_video{href:"#", title: "Delete Your Video", data: {video: video.id}}
-                =image_tag("delete_icon.png")
-          .clear
-          %p="#{video.statistics.inject(0){|sum,v| sum + v.watched }} views / #{time}"
-          %p="Hello This is going to be some cool stuff"
+          =image_tag "#{jwUrl}#{video.media_id}-#{sizes[:small]}.jpg", width: sizes[:small], class: "video__image"
+          =image_tag "play_icon.png", class: "play__button", width: "40px";
+          .details
+            .vote
+              - if video.vote && video.vote.vote == 1
+                =image_tag("Thumb up.png")
+                %p="Support"
+              - if video.vote && video.vote.vote == 0
+                =image_tag("Thumb down.png")
+                %p="Oppose"
+            - if user_signed_in? && controller_name == "users" && action_name == "show"
+              .delete
+                %a.delete_video{href:"#", title: "Delete Your Video", data: {video: video.id}}
+                  =image_tag("delete_icon.png")
+            .clear
+            %p="#{video.statistics.inject(0){|sum,v| sum + v.watched }} views / #{time}"
+            %p="Hello This is going to be some cool stuff"

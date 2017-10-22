@@ -9,3 +9,6 @@
         .modal-body
           .form-group.text-center
             =render('share_buttons', twitter_text: "",  facebook_text: "", twitter_image: "twitter.png", facebook_image: "facebook.png")
+          .form-group.text-center
+            %label="Share a direct link"
+            %input.link-share{type: "text"}

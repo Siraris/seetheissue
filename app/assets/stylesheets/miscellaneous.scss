@@ -113,6 +113,19 @@
   }
 }
 
+.twitter-share > img{
+  width: 35px;
+}
+
+.facebook-share > img{
+  width: 19px;
+}
+
+.link-share {
+  color: #000;
+  width: 215px;
+}
+
 #reportModal {
   z-index: 99999;
   .modal-content {

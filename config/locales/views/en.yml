@@ -12,6 +12,7 @@ en:
     everybody_opinion: Everybody has an opinion. What's yours?
     opinion_sub_html: <p>Find an issue you're passionate about.</p><p>Watch a few videos. <strong>Share your response.</strong></p>
     share_button: Share a Video
+    post_issue_text: Your opinion matters.
   modals:
     login:
       sign_up: Sign Up

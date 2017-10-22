@@ -2,10 +2,11 @@
 - sizes = {small: "360", medium: "480", large: "720"}
 .video-montage
   .montage__container
+    =render('videos/flag', text: "Hot Issue")
     =image_tag("#{jwUrl}#{most_viewed.media_id}-#{sizes[:medium]}.jpg", class: "montage__large")
   .montage__container.parent
     =render('videos/flag', text: "Around The Site")
-    .video_data.hidden=@around_the_site.to_json
+    .video_data.hidden=@around_the_site.to_json(:include => :issue)
     - around_site.each_with_index do |video, index|
       =link_to "#", data: {id: video.media_id, videobox:"video", index: index} do
         =image_tag("#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "montage__small")

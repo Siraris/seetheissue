@@ -1,28 +1,24 @@
 %nav.navbar.navbar-toggleable-md.navbar-default{ role: 'navigation' }
-  .container-fluid
-    .navbar-header
-      %button.navbar-toggle{data: {toggle: "collapse", target: "#header__nav"}}
-      %a.navbar-brand{href: "/"}
-    </div>
-    .collapse.navbar-collapse#header__nav
-      .navbar-header
-        %a.navbar-brand{href: "/"}
-          =image_tag 'logo.png', {width: "107px", height: "92px"}
-      %ul.nav.navbar-nav.mr-auto
-        %li.nav-item
-          =link_to "#", {class: 'nav-link'} do
-            ="How It Works"
-        %li.nav-item
-          =link_to "#", {class: 'nav-link explore-videos'} do
-            ="Explore Videos"
-          = render 'issue_navigator'
-        - if user_signed_in?
-          %li
-            =link_to "My Profile", "/profile"
-            = link_to "sign out", destroy_user_session_path, method: :delete
-        - else
-          %li
-            = link_to "Login", "#", data: {toggle: 'modal', target: '#loginModal'}
-      .nav.navbar-nav.navbar-right
-        %span=t('.cta_html')
-        =render 'byb', text: t('.upload_video')
+  %button.navbar-toggle.navbar-right{type:"button", data:{toggle:"collapse", target:"#header__nav"}, aria:{controls:"navbarSupportedContent", expanded:"false", label:"Toggle navigation"}}
+    %span.navbar-toggler-icon
+  %a.navbar-brand{href: "/"}
+    / =image_tag 'logo.png', {width: "107px", height: "92px"}
+  .collapse.navbar-collapse#header__nav
+    %ul.nav.navbar-nav.mr-auto
+      %li.nav-item
+        =link_to "#", {class: 'nav-link'} do
+          ="How It Works"
+      %li.nav-item
+        =link_to "#", {class: 'nav-link explore-videos'} do
+          ="Explore Videos"
+        = render 'issue_navigator'
+      - if user_signed_in?
+        %li
+          =link_to "My Profile", "/profile"
+          = link_to "sign out", destroy_user_session_path, method: :delete
+      - else
+        %li
+          = link_to "Login", "#", data: {toggle: 'modal', target: '#loginModal'}
+    .nav.navbar-nav.navbar-right
+      %span=t('.cta_html')
+      =render 'byb', text: t('.upload_video')

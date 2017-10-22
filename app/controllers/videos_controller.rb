@@ -94,7 +94,7 @@ class VideosController < ApplicationController
       while videos.length < 4 do
         random_num = Random.rand(video_count)
         # ensure video still exists and hasn't been deleted
-        video = Video.where(id: random_num).first
+        video = Video.where(id: random_num).includes(:issue).first
         videos.push(video) if (video and !videos.include?(video))
       end
 

@@ -1,13 +1,24 @@
 .navbar-default {
   background-color: #38414A !important;
   color: #fff;
-  padding: 27px 90px 27px 95px;
+  padding: 27px 90px 0 95px;
+  @media (max-width: $screen-md-min) {
+    padding-left: 30px;
+  }
   border: none !important;
 }
 
 .navbar-brand {
-  width: 107px;
   padding: 0 !important;
+  background-image: url("logo.png");
+  width: 133px;
+  height: 115px;
+
+  @media (max-width: $screen-xs-max) {
+    background-image: url("logo-horizontal.png");
+    width: 184px;
+    height: 37px;
+  }
 }
 
 .navbar-nav span {
@@ -30,10 +41,8 @@
 
 ul.navbar-nav {
   list-style-type: none;
-  position: absolute;
-  bottom: 26px;
-  left: 200px;
   margin-left: 6%;
+  margin-top: 4%;
 
   li {
     display:inline-block;
@@ -55,7 +64,7 @@ ul.navbar-nav {
   padding: 40px 98px;
 
   #issue-content {
-    width: 200px;
+    width: 210px;
     height: 100%;
   }
 

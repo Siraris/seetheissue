@@ -149,7 +149,7 @@
       if (self.currentVideoIndex === 0) {
         self.changeVideo(self.album.length - 1);
       } else {
-        self.changeVideo(parseInt(self.currentVideoIndex) - 1);
+        self.changeVideo(self.currentVideoIndex - 1);
       }
       return false;
     });
@@ -158,7 +158,7 @@
       if (self.currentVideoIndex === self.album.length - 1) {
         self.changeVideo(0);
       } else {
-        self.changeVideo(parseInt(self.currentVideoIndex) + 1);
+        self.changeVideo(self.currentVideoIndex + 1);
       }
       return false;
     });
@@ -203,6 +203,7 @@
       $('#shareModal').modal('show');
       const video = this.album[this.currentVideoIndex];
       $('#shareModal .twitter-share').attr('href', `https://twitter.com/intent/tweet?text=See what this video has to say about ${video.issue.name} http://www.seetheissue.com/videos/${video.id}`);
+      $('#shareModal .link-share').val(`http://www.seetheissue.com/videos/${video.id}`);
     });
   };
 
@@ -307,7 +308,7 @@
 
     this.disableKeyboardNav();
     const $video = this.$videobox.find('.vb-video');
-    this.currentVideoIndex = videoNumber;
+    this.currentVideoIndex = parseInt(videoNumber);
 
     this.$overlay.fadeIn(this.options.fadeDuration);
 
@@ -548,13 +549,13 @@
       this.end();
     } else if (key === 'p' || keycode === KEYCODE_LEFTARROW) {
       if (this.currentVideoIndex !== 0) {
-        this.changeVideo(parseInt(this.currentVideoIndex) - 1);
+        this.changeVideo(this.currentVideoIndex - 1);
       } else if (this.options.wrapAround && this.album.length > 1) {
         this.changeVideo(this.album.length - 1);
       }
     } else if (key === 'n' || keycode === KEYCODE_RIGHTARROW) {
       if (this.currentVideoIndex !== this.album.length - 1) {
-        this.changeVideo(parseInt(this.currentVideoIndex) + 1);
+        this.changeVideo(this.currentVideoIndex + 1);
       } else if (this.options.wrapAround && this.album.length > 1) {
         this.changeVideo(0);
       }

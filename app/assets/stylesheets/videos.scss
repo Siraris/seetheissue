@@ -107,6 +107,11 @@
   }
 
   .carousel__category {
+    cursor:pointer;
+    img:hover {
+      opacity: .8;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
     .details {
       width: 186px;
 

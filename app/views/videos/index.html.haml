@@ -5,7 +5,7 @@
     .col-md-12.white__container
       = render 'front_video_montage', most_viewed: @videos[0], around_site: @around_the_site
     .col-md-12
-      = render 'call_to_action', text: t('call_to_action.post_an_issue'), button_text: t('call_to_action.share_button')
+      = render 'call_to_action', title: t('call_to_action.post_an_issue'), sub_text: t('call_to_action.post_issue_text'), button_text: t('call_to_action.share_button')
     .col-md-12.categories-explore.white__container
       %h3.lightblue=t('.categories')
       = render 'categories_carousel', categories: @categories, slicktrabutes: categories_slicktrabutes
@@ -19,5 +19,5 @@
       .col-md-4.col-md-offset-2
         =render 'inline_video', video_id: "Nz81122e"
       .col-md-4.darkblue
-        = render 'call_to_action', text: t('call_to_action.post_an_issue'), sub_text: t('call_to_action.opinion_sub_html'), button_text: t('call_to_action.share_button')
+        = render 'call_to_action', title: t('call_to_action.post_an_issue'), sub_text: t('call_to_action.opinion_sub_html'), button_text: t('call_to_action.share_button')
     #test

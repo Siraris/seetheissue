@@ -33,6 +33,28 @@ CREATE TABLE `categories` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `friendly_id_slugs`
+--
+
+DROP TABLE IF EXISTS `friendly_id_slugs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `friendly_id_slugs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `slug` varchar(255) NOT NULL,
+  `sluggable_id` int(11) NOT NULL,
+  `sluggable_type` varchar(50) DEFAULT NULL,
+  `scope` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope` (`slug`,`sluggable_type`,`scope`),
+  KEY `index_friendly_id_slugs_on_sluggable_id` (`sluggable_id`),
+  KEY `index_friendly_id_slugs_on_slug_and_sluggable_type` (`slug`,`sluggable_type`),
+  KEY `index_friendly_id_slugs_on_sluggable_type` (`sluggable_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `issue_submissions`
 --
 
@@ -68,7 +90,9 @@ CREATE TABLE `issues` (
   `updated_at` datetime NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `top_issue` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `slug` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_issues_on_slug` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -221,7 +245,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-22 15:47:41
+-- Dump completed on 2017-10-27 16:25:20
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -255,4 +279,8 @@ INSERT INTO schema_migrations (version) VALUES ('20170928024543');
 INSERT INTO schema_migrations (version) VALUES ('20171002002740');
 
 INSERT INTO schema_migrations (version) VALUES ('20171022204634');
+
+INSERT INTO schema_migrations (version) VALUES ('20171027211843');
+
+INSERT INTO schema_migrations (version) VALUES ('20171027212452');
 

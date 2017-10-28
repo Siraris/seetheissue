@@ -6,11 +6,11 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = Issue.where(id: params[:id]).first
-    @videos = Video.where(issue_id: params[:id])
-    @issue_video_count = Video.where(issue_id: params[:id]).count('id')
-    @for_votes = @issue.votes.where(vote: 1).count('id')
-    @against_votes = @issue.votes.where(vote:0).count('id')
+    @issue = Issue.friendly.find(params[:id])
+    @videos = Video.where(issue_id: @issue).limit(20)
+    @issue_video_count = Video.where(issue_id: @issue).count()
+    @for_votes = @issue.votes.where(vote: 1).count()
+    @against_votes = @issue.votes.where(vote:0).count()
   end
 
   def issue_params

@@ -35,6 +35,9 @@ gem 'rest-client'
 # Devise - Authentication for Rails based on Warden
 gem 'devise'
 
+# FriendlyId is the “Swiss Army bulldozer” of slugging and permalink plugins
+gem 'friendly_id', '~> 5.1.0'
+
 # Omniauth for social logins
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'

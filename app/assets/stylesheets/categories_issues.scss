@@ -17,6 +17,24 @@
   }
 }
 
+.carousel__container {
+  .carousel.categories {
+    img {
+      width: 220px;
+      height: 110px;
+    }
+    @media (max-width: $screen-xs-max) {
+      img {
+        width: 190px;
+        //height: 110px;
+      }
+      h3 {
+        width: 190px;
+      }
+    }
+  }
+}
+
 #categories-back__btn {
   font-size: 1.5em;
   color: $sti-darkblue;

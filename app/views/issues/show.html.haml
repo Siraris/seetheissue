@@ -22,7 +22,7 @@
       =render('share_buttons', twitter_text: t('.twitter_text', issue_name: @issue.name, url: request.original_url), facebook_text: t('.facebook_text', issue_name: @issue.name, url: request.original_url), twitter_image: "Icon_Twitter.svg", facebook_image: "Icon_FB.svg")
 #issue-related__videos.container-fluid
   %h3.lightblue="More Videos About #{@issue.name}"
-  = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issue, title: "hide"
+  = render 'videos/video_carousel', videos: @videos, slicktrabutes: video_slicktrabutes, issue: @issue, title: "hide", infinite: true
 #how-it-works__container.container-fluid
   .row
     %h3.lightblue="How It Works"

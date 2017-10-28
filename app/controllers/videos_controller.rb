@@ -2,7 +2,7 @@ class VideosController < ApplicationController
 
   def index
     @categories = Category.all
-    @issues = Issue.all
+    @issues = Issue.friendly.all
     @videos = Video.includes(:issue).where(issue_id: @issues.reject{|issue| issue.top_issue == false})
     @around_the_site = generate_around_site
   end
@@ -40,7 +40,7 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.where(id: params[:id]).first
-    @issue = Issue.where(id: @video.issue_id).first
+    @issue = Issue.friendly.where(id: @video.issue_id).first
     @videos = Video.where(issue_id: @issue.id)
   end
 

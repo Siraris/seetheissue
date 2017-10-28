@@ -1,6 +1,7 @@
 - title = (title.present?) ? title : ""
 - jwUrl = "http://content.jwplatform.com/thumbs/"
 - sizes = {small: "186", medium: "480", large: "720"}
+- carouselClasses = ["carousel", "parent", ("infinite" if local_assigns[:infinite].present?)]
 
 .carousel__container
   - if local_assigns[:issue].present? && title != "hide"
@@ -10,7 +11,7 @@
   - if videos.length == 0
     %h1 No videos yet for this issue
   - else
-    .carousel.parent{data: {slick: slicktrabutes}}
+    %div{class: carouselClasses, data: {slick: slicktrabutes, page: 1, issue_id: issue.id}}
       .video_data.hidden=videos.to_json(:include => :issue)
       - videos.each_with_index do |video, index|
         .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
@@ -35,4 +36,7 @@
                   =image_tag("delete_icon.png")
             .clear
             %p="#{video.statistics.inject(0){|sum,v| sum + v.watched }} views / #{time}"
-            %p="Hello This is going to be some cool stuff"
+            - if video.description
+              %p="#{video.description.slice(0, 50)}..."
+            - else
+              %p="A video about #{issue.name}"

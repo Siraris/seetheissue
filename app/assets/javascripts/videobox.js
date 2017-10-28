@@ -322,6 +322,7 @@
     })
 
     jwplayer().on("ready", () =>{
+      this.$videobox.find('.vb-next').css("opacity", '0');
       this.sizeContainer($video + 50, $video + 50);
       $video.show();
     });
@@ -332,6 +333,9 @@
 
     jwplayer().on("complete", () => {
       this.recordComplete(self.album[self.currentVideoIndex].id);
+      if (this.currentVideoIndex <= this.album.length) {
+        this.$videobox.find('.vb-next').css("opacity", '1');
+      }
     });
 
     if (this.album.length - this.currentVideoIndex == 2) {
@@ -504,11 +508,9 @@
         });
     }
 
-    if (this.album.length > 1 && this.options.showImageNumberLabel) {
+    if (this.album.length > 0 && this.options.showImageNumberLabel) {
       const labelText = this.imageCountLabel(this.currentVideoIndex + 1, this.album.length);
       this.$videobox.find('.vb-number').text(labelText).fadeIn('fast');
-    } else {
-      this.$videobox.find('.vb-number').hide();
     }
 
     this.$outerContainer.removeClass('animating');
@@ -576,29 +578,6 @@
     }
     this.album = [];
   };
-
-  /*
-    Deprecated but might be used later: 
-    Retrieves a list of videos for the current issue
-
-    issue_id: Id of the issue stored on the carousel__container
-
-    returns a list of video objects
-
-   */
-  Videobox.prototype.getVideos = function(videos) {
-    const self = this;
-    const deferred = $.Deferred();
-    $.ajax({
-      url: `/videos/list/${issue_id}`
-    })
-    .done((data, status, xhr) => {
-      self.album = _.concat(self.album, data);
-      deferred.resolve();
-    });
-
-    return deferred.promise();
-  }
 
   return new Videobox();
 }));

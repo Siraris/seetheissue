@@ -1,0 +1,8 @@
+.container-fluid
+  .row
+    .col-md-12
+      %h1= t('.header', report: @candidate.id)
+
+  .row
+    .col-md-8
+      = render partial: 'form', locals: { candidate: @candidate }

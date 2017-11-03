@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title STI Admin
+
+    = stylesheet_link_tag 'admin'
+    = stylesheet_link_tag 'admin', media: 'all'
+    = csrf_meta_tags
+  %body
+    = render 'admin_nav'
+
+    .container-fluid
+      .row
+        .col-md-12
+          = render 'flash'
+          = yield
+
+    = javascript_include_tag 'admin'
+    = yield :bottom

@@ -3,6 +3,7 @@ class VideosController < ApplicationController
   def index
     @categories = Category.all
     @issues = Issue.friendly.all
+    @highlights = @issues.reject{|issue| issue.top_issue == false}
     @videos = Video.includes(:issue).where(issue_id: @issues.reject{|issue| issue.top_issue == false})
     @around_the_site = generate_around_site
   end

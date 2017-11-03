@@ -18,6 +18,15 @@ $(function() {
     }
   });
 
+  $('#load-more__btn').on('click', (e) => {
+    $('.videos-explore .more-videos').slideToggle();
+    if ($(e.currentTarget).children('p').html() == "Show More") {
+      $(e.currentTarget).children('p').html("Show Less");
+    } else {
+      $(e.currentTarget).children('p').html("Show More");
+    }
+  });
+
     /*
     Deprecated but might be used later:
     Retrieves a list of videos for the current issue

@@ -1,0 +1,25 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "admin_nav", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to admin_root_path, class: 'navbar-brand' do
+        = image_tag 'br-icon-white.svg', width: 20, height: 20
+
+    #admin_nav.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li= link_to 'R'
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Election Data
+            %span.caret
+          %ul.dropdown-menu
+
+      %p.navbar-text.navbar-right
+        Signed in as
+        = current_user.email
+
+    .clearfix

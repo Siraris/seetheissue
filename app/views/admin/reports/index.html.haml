@@ -1,0 +1,15 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th= Report.human_attribute_name(:video)
+      %th= Report.human_attribute_name(:id)
+  %tbody
+    - if @reports.empty?
+      %tr
+        %td.text-center{ colspan: 2 }
+          %p No reports
+    - else
+      = render @reports
+
+.text-center
+  = paginate @reports

@@ -149,6 +149,9 @@ GEM
     json-schema (2.8.0)
       addressable (>= 2.4)
     jwt (1.5.6)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -350,6 +353,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json-schema
+  kaminari
   mysql2 (~> 0.3.13)
   omniauth-facebook
   omniauth-google-oauth2

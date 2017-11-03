@@ -11,12 +11,21 @@
       = render 'categories_carousel', categories: @categories, slicktrabutes: categories_slicktrabutes
     .col-md-12.videos-explore
       %h3.lighterblue=t('.issues')
-      - @issues.reject{|issue| issue.top_issue == false}.each do |issue|
+      - first_3 = @highlights.slice!(0, 3)
+      - first_3.each_with_index do |issue, index|
         = render 'video_carousel', videos: @videos.select {|video| video.issue_id == issue.id}, slicktrabutes: video_slicktrabutes, issue: issue
+      - if @highlights.length > 0
+        .more-videos{style: "display:none;"}
+          - @highlights.each_with_index do |issue, index|
+            = render 'video_carousel', videos: @videos.select {|video| video.issue_id == issue.id}, slicktrabutes: video_slicktrabutes, issue: issue
+        }
+        .col-md-12.text-center
+          %button.byb.btn.btn-lg#load-more__btn
+            %p.bold Show More
+
     .col-md-12.white__container.how-it-works
       %h3.lightblue=t('.how_works')
       .col-md-4.col-md-offset-2
         =render 'inline_video', video_id: "Nz81122e"
       .col-md-4.darkblue
         = render 'call_to_action', title: t('call_to_action.post_an_issue'), sub_text: t('call_to_action.opinion_sub_html'), button_text: t('call_to_action.share_button')
-    #test

@@ -49,6 +49,10 @@ gem "browserify-rails"
 
 gem 'remotipart', '~> 1.2'
 
+# A Scope & Engine based, clean, powerful, customizable and sophisticated
+# paginator for modern web app frameworks and ORMs
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

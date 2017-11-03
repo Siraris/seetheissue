@@ -1,0 +1,5 @@
+- flash.each do |type, message|
+  .alert.alert-dismissible{ class: "" }
+    %button.close{aria: { label: t('modals.close') }, data: { dismiss: 'alert' }, type: 'button'}
+      %span{aria: { hidden: 'true'}} &times;
+    = message

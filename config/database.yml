@@ -52,3 +52,11 @@ test: &test
   database: seetheissue_test<%= ENV["TEST_ENV_NUMBER"] %>
   host: localhost
   username: <%= ENV["TEST_DB_USER"] || "root" %>
+
+production:
+  <<: *default
+  database: <%= ENV['STI_RDS_DB_NAME'] %>
+  username: <%= ENV['STI_RDS_USERNAME'] %>
+  password: <%= ENV['STI_RDS_PASSWORD'] %>
+  host: <%= ENV['STI_RDS_HOSTNAME'] %>
+  port: <%= ENV['STI_RDS_PORT'] %>

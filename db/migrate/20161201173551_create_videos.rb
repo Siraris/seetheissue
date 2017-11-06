@@ -1,8 +1,7 @@
 class CreateVideos < ActiveRecord::Migration
   def change
     create_table :videos do |t|
-      t.string :url
-      t.integer :category_id
+      t.string :media_id
       t.integer :user_id
       t.integer :issue_id
       t.timestamps null: false

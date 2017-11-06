@@ -1,4 +1,5 @@
-$(function () {
+$(() => {
+
   var clearModalErrors = (modal) => {
     // Clear error summary div
     $(modal).find('.auth__modal__errors').hide().text('');

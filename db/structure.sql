@@ -93,7 +93,7 @@ CREATE TABLE `issues` (
   `slug` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_issues_on_slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,6 +184,7 @@ CREATE TABLE `users` (
   `bio` varchar(255) NOT NULL DEFAULT '',
   `photo` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `zipcode` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
@@ -207,6 +208,7 @@ CREATE TABLE `videos` (
   `views` int(11) DEFAULT '0',
   `title` varchar(300) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `approved` smallint(6) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_videos_on_user_id_and_issue_id` (`user_id`,`issue_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
@@ -245,7 +247,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 16:25:20
+-- Dump completed on 2017-11-10 12:25:08
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -283,4 +285,8 @@ INSERT INTO schema_migrations (version) VALUES ('20171022204634');
 INSERT INTO schema_migrations (version) VALUES ('20171027211843');
 
 INSERT INTO schema_migrations (version) VALUES ('20171027212452');
+
+INSERT INTO schema_migrations (version) VALUES ('20171110175203');
+
+INSERT INTO schema_migrations (version) VALUES ('20171110182216');
 

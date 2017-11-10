@@ -11,6 +11,8 @@ class Video < ActiveRecord::Base
     includes(:issue)
   }
 
+  default_scope {where("approved = true")}
+
   def destroy_from_cloud
     jwService = JWService.new
     result = jwService.destroy(self.media_id)

@@ -88,19 +88,11 @@ class VideosController < ApplicationController
   end
 
   private
+
+    # This might need a bit more complexity in the future,
+    # but for now, it works like a charm
     def generate_around_site
-      video_count = Video.all.count
-      videos = Array.new
-
-      while videos.length < 4 do
-        random_num = Random.rand(video_count)
-        # ensure video still exists and hasn't been deleted
-        video = Video.where(id: random_num).includes(:issue).first
-        videos.push(video) if (video and !videos.include?(video))
-      end
-
-      return videos
-
+      return Video.order("RAND()").limit(4)
     end
 
     def store_statistic(name)

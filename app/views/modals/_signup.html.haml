@@ -34,6 +34,12 @@
                 placeholder: User.human_attribute_name(:password_confirmation),
                 required: true,
                 class: 'form-control input-lg'
+            .form-group
+              = f.label :zipcode, class: 'sr-only'
+              = f.text_field :zipcode,
+                placeholder: User.human_attribute_name(:zipcode),
+                required: true,
+                class: 'form-control input-lg'
             = f.button t('.sign_up'),
               class: 'btn btn-primary btn-lg btn-block',
               data: { 'disable-with' => t('.signing_up_html') }

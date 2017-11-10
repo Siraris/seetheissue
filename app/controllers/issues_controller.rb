@@ -7,7 +7,7 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.friendly.find(params[:id])
-    @videos = Video.where(issue_id: @issue).limit(20)
+    @videos = Video.where(issue_id: @issue).limit(25)
     @issue_video_count = Video.where(issue_id: @issue).count()
     @for_votes = @issue.votes.where(vote: 1).count()
     @against_votes = @issue.votes.where(vote:0).count()

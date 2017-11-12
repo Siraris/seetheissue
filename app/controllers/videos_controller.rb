@@ -60,7 +60,7 @@ class VideosController < ApplicationController
   end
 
   def plays
-    # NOTE: Need to implement page consumption by recursively calling 
+    # NOTE: Need to implement page consumption by recursively calling
     # Can we get if there's more than one page of data?
     # or do we need to check page_length and if at 100, get next page?
     jwService = JWService.new
@@ -79,7 +79,8 @@ class VideosController < ApplicationController
   # TODO - Don't return all videos, just video for issue
   def list
     respond_to do |format|
-      format.json { render json: Video.where(issue_id: params[:issue_id]).limit(25)}
+      format.html { render partial: 'videos/issues_video_container', locals: {videos: Video.where(issue_id: params[:issue_id]).page(params[:page]).per(params[:per]), issue: Issue.where(id: params[:issue_id])} }
+      format.json { render json: Video.where(issue_id: params[:issue_id]).page(params[:page]).per(params[:per])}
     end
   end
 

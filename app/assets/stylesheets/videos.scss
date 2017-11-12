@@ -233,11 +233,26 @@
 .video__grid {
   display:flex;
   flex-wrap: wrap;
-  font-size: 0;
+  justify-content: left;
+  padding-left: 7%;
+  position: relative;
+
+  #next, #prev {
+    position: absolute;
+    top: 50%;
+  }
+
+  #next {
+    right: 20px;
+  }
+
+  #prev {
+    left: 20px;
+  }
 
   .video__container {
     display:inline-block;
-    width: 13%;
+    width: 15%;
     cursor:pointer;
 
     .play__button {

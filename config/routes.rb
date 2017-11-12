@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :videos do
     collection do
-      get 'list/:issue_id' => :list
+      get 'list/:issue_id/:page/:per' => :list
       get :plays
       post :watched
       post :completed

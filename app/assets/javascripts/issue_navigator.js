@@ -1,5 +1,5 @@
-issues = [];
-categories = [];
+var issues = [];
+var categories = [];
 
 $(function() {
   // Load categories and populate them

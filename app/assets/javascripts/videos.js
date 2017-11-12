@@ -1,22 +1,43 @@
-// const jwUrl = "http://content.jwplatform.com/thumbs/";
-// const sizes = {
-//   small: "360",
-//   medium: "480",
-//   large: "720"
-// }
+jQuery.retrieveVideos = function (page, per) {
+  if (needMoreVideoData(page * per)) {
+    $.ajax({
+      url: `/videos/list/1/${page}/${per}.json`,
+      dataFormat: "json"
+    })
+    .done((data, status, xhr) => {
+      let videoData = JSON.parse($('.video_data').html());
+      videoData = videoData.concat(data);
+      $('.video_data').html(JSON.stringify(videoData));
+    })
+  }
+
+  $.ajax({
+    url: `/videos/list/1/${page}/${per}`,
+    dataFormat: "html"
+  })
+  .done((data, status, xhr) => {
+    if (data.length > 0) {
+      $('.video__grid .videos').html(data);
+    } else {
+      issueExplorerPage--;
+    }
+  });
+
+  function needMoreVideoData(length) {
+    const data = JSON.parse($('.video_data').html());
+    if (data.length >= length) {
+      return false;
+    }
+    return true;
+  }
+}
 
 $(function() {
+  let issueExplorerPage = 1;
+
   $('.nailthumb-container').nailthumb();
 
   $('.carousel').slick()
-
-  $('.parent.infinite').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-    const total = slick.slideCount - 5,
-    parent = $(this);
-    if (nextSlide == total) {
-      getVideos(parent.data('issueId'), parent.data('page'));
-    }
-  });
 
   $('#load-more__btn').on('click', (e) => {
     $('.videos-explore .more-videos').slideToggle();
@@ -26,38 +47,6 @@ $(function() {
       $(e.currentTarget).children('p').html("Show More");
     }
   });
-
-    /*
-    Deprecated but might be used later:
-    Retrieves a list of videos for the current issue
-
-    issue_id: Id of the issue stored on the carousel__container
-
-    returns a list of video objects
-
-   */
-  function getVideos(issue_id, page) {
-    const self = this;
-    const deferred = $.Deferred();
-    $.ajax({
-      url: `/videos/list/${issue_id}/${page}`
-    })
-    .done((data, status, xhr) => {
-      // const videoDataParent = $('.parent.infinite'),
-      // videoDataHolder = videoDataParent.find('.video_data');
-      // let videoData = JSON.parse(videoDataParent.find('.video_data').html()),
-      // nextPage = videoDataParent.data('page') + 1;
-      // const start = videoData.length;
-
-      // videoData = videoData.concat(data);
-      // appendVideosToSlider(videoData, start);
-      // videoDataHolder.html(JSON.stringify(videoData));
-      // videoDataParent.data('page', nextPage);
-      // deferred.resolve();
-    });
-
-    return deferred.promise();
-  }
 
   function appendVideosToSlider(videoData, start) {
     let parent = $("<div />");
@@ -89,5 +78,19 @@ $(function() {
       }
     }
   }
+
+  /* Issue Explorer code */
+  $('.video__grid #prev').on('click', (e) => {
+    if (issueExplorerPage != 1) {
+      issueExplorerPage--;
+    }
+    $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
+  });
+
+  $('.video__grid #next').on('click', (e) => {
+    issueExplorerPage++;
+    $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
+  });
+  /* End Issue Explorer code */
 });
 

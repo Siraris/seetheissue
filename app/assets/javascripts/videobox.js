@@ -160,6 +160,7 @@
       } else {
         self.changeVideo(self.currentVideoIndex + 1);
       }
+
       return false;
     });
 

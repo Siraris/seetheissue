@@ -7,7 +7,7 @@ $(() => {
         if (issue.category_id == categoryId) {
          $('.issues.carousel').slick('slickAdd',`<a href="/issues/${issue.slug}">
           <div class="carousel__issue">
-          <img src="assets/${issue.image}" width="220px" />
+          <img src="assets/${issue.image}" width="220px" height="125px" />
           <h3>${issue.name}</h3>
           </div>
           </a>`);

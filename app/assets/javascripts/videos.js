@@ -18,6 +18,7 @@ jQuery.retrieveVideos = function (page, per) {
   .done((data, status, xhr) => {
     if (data.length > 0) {
       $('.video__grid .videos').html(data);
+      $('.video__grid .videos').fadeIn(400);
     } else {
       issueExplorerPage--;
     }
@@ -83,13 +84,22 @@ $(function() {
   $('.video__grid #prev').on('click', (e) => {
     if (issueExplorerPage != 1) {
       issueExplorerPage--;
+    } else {
+      $(e.currentTarget).addClass('hidden');
     }
-    $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
+
+    $('.video__grid .videos').fadeOut(400, function(){
+      $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
+    });
+
   });
 
   $('.video__grid #next').on('click', (e) => {
     issueExplorerPage++;
-    $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
+    $('.video__grid .videos').fadeOut(400, function(){
+      $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
+    });
+    $('.video__grid #prev').removeClass('hidden');
   });
   /* End Issue Explorer code */
 });

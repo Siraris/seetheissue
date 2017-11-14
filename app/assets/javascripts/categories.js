@@ -1,5 +1,6 @@
 $(() => {
   $('.carousel__category').on('click', (e) => {
+    console.log("??")
     const categoryId = $(e.currentTarget).data('id');
     $('.categories.carousel').fadeOut(400, () => {
       for (let i = 0, len = issues.length; i < len; i++) {

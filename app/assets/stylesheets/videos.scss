@@ -11,6 +11,10 @@
 .container-fluid.hero {
   margin: 0;
   padding: 0;
+
+  .col-md-12.white__container {
+    padding: 0;
+  }
 }
 
 .around_the_site {
@@ -100,6 +104,10 @@
 }
 
 .carousel__container {
+
+  @media (max-width: $screen-xs-max) {
+    width: 73%;
+  }
   width: 85%;
   margin: 0 auto 44px auto;
   border-bottom: 1px solid #888B8F;
@@ -116,6 +124,13 @@
 
   .carousel__category {
     cursor:pointer;
+
+    .video__image {
+      @media (max-width: $screen-xs-max) {
+        width: 286px;
+      }
+      width: 186px;
+    }
 
     .play__button {
       opacity: 0;
@@ -252,7 +267,8 @@
 
   .video__container {
     display:inline-block;
-    width: 15%;
+    min-width: 15%;
+    margin-right: 8px;
     cursor:pointer;
 
     .play__button {
@@ -260,7 +276,7 @@
       display:none;
     }
     .details {
-      width: 186px;
+      max-width: 186px;
 
       .vote {
         float:left;

@@ -20,7 +20,7 @@
           - if (days < 6)
             = render "videos/corner_banner", text: "NEW"
 
-          =image_tag "#{jwUrl}#{video.media_id}-#{sizes[:small]}.jpg", width: sizes[:small], class: "video__image"
+          =image_tag "#{jwUrl}#{video.media_id}-#{sizes[:medium]}.jpg", class: "video__image"
           =image_tag "play_icon.png", class: "play__button", width: "40px";
           .details
             .vote

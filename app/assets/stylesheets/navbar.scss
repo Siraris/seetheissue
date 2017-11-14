@@ -10,12 +10,12 @@
 
 .navbar-brand {
   padding: 0 !important;
-  background-image: url("logo.png");
+  background-image: image-url("logo.png");
   width: 133px;
   height: 115px;
 
   @media (max-width: $screen-xs-max) {
-    background-image: url("logo-horizontal.png");
+    background-image: image-url("logo-horizontal.png");
     width: 184px;
     height: 37px;
   }

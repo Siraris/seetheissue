@@ -8,6 +8,11 @@ class VideosController < ApplicationController
     @around_the_site = generate_around_site
   end
 
+  def test
+    @geo_service = GEOService.new
+    result = @geo_service.query_geo_data("60035")
+  end
+
   def create
     # TODO Check to see size of file? We can't let anything over 5 GB
     # which would be a ridiculous size regardless

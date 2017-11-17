@@ -93,7 +93,7 @@ CREATE TABLE `issues` (
   `slug` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_issues_on_slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +153,7 @@ CREATE TABLE `statistics` (
   KEY `index_statistics_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_42a876aeed` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_rails_d1884c5421` FOREIGN KEY (`video_id`) REFERENCES `videos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,6 +185,10 @@ CREATE TABLE `users` (
   `photo` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `zipcode` varchar(10) DEFAULT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `county` varchar(255) DEFAULT NULL,
+  `locality` varchar(255) DEFAULT NULL,
+  `postal_gid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
@@ -247,7 +251,7 @@ CREATE TABLE `votes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-10 12:25:08
+-- Dump completed on 2017-11-17 17:40:13
 INSERT INTO schema_migrations (version) VALUES ('20161201173551');
 
 INSERT INTO schema_migrations (version) VALUES ('20161201174440');
@@ -289,4 +293,6 @@ INSERT INTO schema_migrations (version) VALUES ('20171027212452');
 INSERT INTO schema_migrations (version) VALUES ('20171110175203');
 
 INSERT INTO schema_migrations (version) VALUES ('20171110182216');
+
+INSERT INTO schema_migrations (version) VALUES ('20171117233717');
 

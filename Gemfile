@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'puma'
 gem 'haml-rails'
 
+gem 'geocoder'
+
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.7'
 

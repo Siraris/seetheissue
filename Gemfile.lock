@@ -109,6 +109,7 @@ GEM
       thor (~> 0.19.1)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -348,6 +349,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   friendly_id (~> 5.1.0)
+  geocoder
   haml-rails
   jazz_fingers
   jbuilder (~> 2.0)

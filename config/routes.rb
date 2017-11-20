@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get :plays
       post :watched
       post :completed
+      get :test
     end
   end
   resources :categories

@@ -6,7 +6,7 @@ class GEOService
   def query_geo_data(zipcode)
     options = {
       params: {
-        api_key: "mapzen-zBXbDcz",
+        api_key: ENV.fetch("MAPZEN_KEY"),
         postalcode: zipcode,
         country: "United States"
       }

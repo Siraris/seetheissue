@@ -251,10 +251,12 @@
   justify-content: left;
   padding-left: 7%;
   position: relative;
+  min-height: 600px;
 
   #next, #prev {
     position: absolute;
     top: 50%;
+    cursor:pointer;
   }
 
   #next {
@@ -270,6 +272,22 @@
     min-width: 15%;
     margin-right: 8px;
     cursor:pointer;
+    position: relative;
+
+    @media (max-width: $screen-xs-max) {
+      margin-left: 30px;
+    }
+
+    .video__image {
+      max-width:85%;
+      height: auto;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      .video__image {
+        max-width: 90%;
+      }
+    }
 
     .play__button {
       opacity: 0;
@@ -338,8 +356,10 @@
 
       display:block;
       position: absolute;
-      top: 33px;
-      left: 70px;
+      top: 50%;
+      margin-top: -60px;
+      left: 50%;
+      margin-left: -18px;
     }
   }
 

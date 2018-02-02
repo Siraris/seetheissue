@@ -146,6 +146,14 @@
     border: none;
   }
 
+  @media (max-width: $screen-xs-max) {
+    #category-issue__container > div, #title-input__container, #description-input__container {
+      margin: 0px auto;
+      width: 220px;
+      float:none !important;
+    }
+  }
+
   .modal-content {
     background-color: $sti-darkblue;
 

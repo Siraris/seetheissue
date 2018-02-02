@@ -18,7 +18,7 @@ jQuery.retrieveVideos = function (page, per) {
   .done((data, status, xhr) => {
     if (data.length > 0) {
       $('.video__grid .videos').html(data);
-      $('.video__grid .videos').fadeIn(400);
+      $('.video__grid .videos').fadeIn(800);
     } else {
       issueExplorerPage--;
     }
@@ -96,7 +96,7 @@ $(function() {
 
   $('.video__grid #next').on('click', (e) => {
     issueExplorerPage++;
-    $('.video__grid .videos').fadeOut(400, function(){
+    $('.video__grid .videos').fadeOut(800, function(){
       $.retrieveVideos(issueExplorerPage, $(e.currentTarget).data('per'));
     });
     $('.video__grid #prev').removeClass('hidden');

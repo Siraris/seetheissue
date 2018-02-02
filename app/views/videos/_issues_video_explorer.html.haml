@@ -1,6 +1,6 @@
 .video__grid.parent
   #prev.hidden{data: {per: 15}}
-    PREVIOUS
+    PREV
   .video_data.hidden=videos.to_json(:include => :issue)
   .videos
     = render 'videos/issues_video_container', videos: @videos, issue: @issue

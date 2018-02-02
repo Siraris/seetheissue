@@ -45,11 +45,6 @@ class UsersController < ApplicationController
 
   private
 
-  # Looks up user from database
-  #
-  # Note that we cannot just return `current_user` as this could be an instance
-  # of `GuestUser`. We look up the user so a `RecordNotFound` is triggered for
-  # guest users.
   def find_user
     User.find(current_user.id)
   end

@@ -11,7 +11,7 @@
   - if videos.length == 0
     %h1 No videos yet for this issue
   - else
-    %div{class: carouselClasses, data: {slick: slicktrabutes, page: 1, issue_id: issue.id}}
+    %div{class: carouselClasses, data: {slick: slicktrabutes, page: 1}}
       .video_data.hidden=videos.to_json(:include => :issue)
       - videos.each_with_index do |video, index|
         .carousel__category{data: {id: video.media_id, videobox:"video", index: index}}
@@ -39,4 +39,4 @@
             - if video.description
               %p="#{video.description.slice(0, 50)}..."
             - else
-              %p="A video about #{issue.name}"
+              %p="A video about #{video.issue.name}"
